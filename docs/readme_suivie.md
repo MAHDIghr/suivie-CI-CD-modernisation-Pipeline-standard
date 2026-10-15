@@ -118,3 +118,11 @@ Ajouter un commentaire à la sous-tâche existante :
 - **Description :** la modifier uniquement si elle ne correspond plus à l'objectif de la sous-tâche.
 
 L'objectif est de garder un suivi fidèle dans le ticket existant, avec des commentaires datés, sans doublons ni création de nouvelles tâches.
+
+
+### Commentaire Jira court — état et prochaines étapes
+
+- **État actuel :** en attente de l'accès au code source pour Syrine (action attendue de Souheil).
+- **À faire :** analyser les pipelines et identifier les éléments standardisables.
+- **À clarifier :** approche de standardisation à retenir et décisionnaire.
+- **À planifier :** étapes, livrables et jalons après l'analyse et la décision.
