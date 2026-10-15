@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kit de pilotage — Sous-tâche CI/CD</title>
+<style>
+:root{--ink:#17243a;--muted:#627089;--line:#dce4ef;--paper:#f4f7fb;--blue:#2357d6;--teal:#0c8b82;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,#142747,#2357d6);color:white;padding:42px max(22px,calc((100% - 1120px)/2)) 36px}
+.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:800;opacity:.78}h1{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:12px 0}header p{max-width:760px;color:#e0e9ff;margin:0}
+main{max-width:1120px;margin:28px auto;padding:0 18px 60px}.topline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.pill{display:inline-flex;padding:5px 10px;border-radius:99px;background:#e4edff;color:#2148a4;font-size:12px;font-weight:750}
+button{border:1px solid var(--line);background:white;color:var(--ink);padding:9px 13px;border-radius:9px;font-weight:700;cursor:pointer}button.primary{background:var(--blue);border-color:var(--blue);color:white}button:hover{filter:brightness(.97)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:0 5px 18px #1d376008}.panel h2{font-size:18px;margin:0 0 12px}.panel h3{font-size:14px;margin:18px 0 6px}.sub{color:var(--muted);font-size:13px;margin-top:-5px}
+.callout{border-left:4px solid var(--teal);background:#eaf8f5;padding:12px 14px;border-radius:7px;margin:12px 0}.callout strong{display:block}
+label{display:block;font-size:12px;font-weight:800;color:var(--muted);margin:10px 0 4px}input,textarea,select{font:inherit;width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;color:var(--ink);background:#fff}textarea{min-height:80px;resize:vertical}.full{grid-column:1/-1}.checklist{display:grid;gap:8px}.check{display:flex;gap:9px;align-items:flex-start}.check input{width:auto;margin-top:5px}.check label{font-size:14px;font-weight:500;color:var(--ink);margin:0}
+.workflow-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}.lane{background:#f6f8fc;border:1px dashed #c8d3e3;border-radius:12px;padding:10px;min-height:240px}.lane h3{margin:2px 0 10px;font-size:13px}.count{color:var(--muted);font-weight:500}.task{background:white;border:1px solid var(--line);border-radius:9px;padding:11px;margin:8px 0;cursor:grab;box-shadow:0 3px 8px #182b4508}.task:focus{outline:2px solid var(--blue)}.task strong{display:block;font-size:13px}.task p{font-size:12px;color:var(--muted);margin:5px 0}.task small{color:var(--blue);font-weight:750}.lane.over{background:#eaf0ff;border-color:var(--blue)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.note{font-size:12px;color:var(--muted)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f0f3f8;border-radius:5px;padding:2px 5px}
+footer{max-width:1120px;margin:auto;padding:0 18px 35px;color:var(--muted);font-size:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.board{grid-template-columns:1fr 1fr}header{padding-top:30px}}@media(max-width:460px){.board{grid-template-columns:1fr}.lane{min-height:100px}}
+@media print{body{background:white}header{padding:22px;background:#142747!important;print-color-adjust:exact}.no-print,button{display:none!important}main{margin:10px auto}.panel,.lane{break-inside:avoid;box-shadow:none}.board{grid-template-columns:repeat(2,1fr)}input,textarea,select{border:0;border-bottom:1px solid #bbb;padding-left:0}.task{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">IT Operations · Build · CI/CD</div><h1>Kit de pilotage d’une sous-tâche</h1><p>Standard léger et réutilisable pour cadrer, suivre et clôturer une sous-tâche de standardisation des pipelines Lambda, sans multiplier les sollicitations de l’équipe DevOps.</p></header>
+<main>
+<div class="topline"><span class="pill">Point de départ : sous-tâche Jira déjà créée et assignée à un DevOps</span><div class="no-print"><button onclick="window.print()">Imprimer / PDF</button> <button class="primary" id="save">Enregistrer localement</button> <button id="reset">Réinitialiser</button></div></div>
+<div class="callout"><strong>Principe de pilotage</strong>Le chef de projet clarifie le résultat attendu, les dépendances et les critères d’acceptation. Le DevOps conserve la responsabilité des choix et de la réalisation technique. On suit les résultats et les blocages, pas chaque action technique.</div>
+<div class="grid">
+<section class="panel"><h2>1. Fiche de la sous-tâche</h2><p class="sub">À compléter avec les informations déjà disponibles dans le ticket parent et les 4 sous-tâches.</p>
+<label>Projet / chantier parent</label><input data-key="parent" value="Modernisation de la chaîne CI/CD">
+<label>Sous-tâche</label><input data-key="task" value="Standardisation des pipelines pour Lambda">
+<label>Lien / clé Jira</label><input data-key="jira" placeholder="Ex. PROJ-123">
+<label>Responsable de réalisation (DevOps)</label><input data-key="owner" placeholder="Nom ou équipe">
+<label>Chef de projet / point de contact</label><input data-key="pilot" placeholder="Nom">
+<label>Échéance cible (si confirmée)</label><input data-key="due" type="date">
+<label>Résultat attendu en une phrase</label><textarea data-key="outcome">Disposer d’un standard de pipeline Lambda documenté, validé et réutilisable sur le périmètre convenu.</textarea>
+</section>
+<section class="panel"><h2>2. Description Jira prête à adapter</h2><p class="sub">La description doit permettre de comprendre le besoin sans imposer la solution technique.</p>
+<label>Contexte et objectif</label><textarea data-key="context">Dans le cadre de la modernisation de la chaîne CI/CD, définir et appliquer un standard de pipeline pour les workloads Lambda sur le périmètre convenu.</textarea>
+<label>Périmètre / hors périmètre</label><textarea data-key="scope" placeholder="Périmètre Lambda concerné, environnements, dépôts ; exclusions explicites si connues."></textarea>
+<label>Livrables attendus</label><textarea data-key="deliverables">• Standard ou configuration de référence
+• Documentation courte et consignes d’utilisation
+• Validation sur un cas représentatif
+• Points restant à traiter documentés</textarea>
+<label>Critères d’acceptation</label><textarea data-key="acceptance">• Le périmètre et les prérequis sont confirmés.
+• Le standard est disponible et documenté.
+• La validation convenue est réalisée et son résultat est traçable.
+• Les écarts, risques et suites éventuelles sont consignés dans Jira.</textarea>
+<label>Dépendances / risques / questions ouvertes</label><textarea data-key="risks" placeholder="Accès, sécurité, environnements, arbitrages, autre équipe, choix non validé…"></textarea>
+<div class="actions no-print"><button id="copyDescription">Copier la description</button></div>
+</section>
+<section class="panel"><h2>3. Workflow de réalisation</h2><p class="sub">Glissez les cartes entre les colonnes. Modifiez les étapes pour les adapter à une autre sous-tâche.</p>
+<div class="workflow-head"><span class="pill">Kanban de suivi — indépendant du workflow Jira officiel</span><button class="no-print" id="addStep">+ Ajouter une étape</button></div>
+<div class="board" id="board">
+<div class="lane" data-lane="todo"><h3>À faire <span class="count"></span></h3><div class="tasks"><article class="task" draggable="true" tabindex="0"><strong contenteditable="true">Cadrer le périmètre</strong><p contenteditable="true">Confirmer Lambda concerné, environnements et résultat attendu.</p><small>À clarifier</small></article><article class="task" draggable="true" tabindex="0"><strong contenteditable="true">Confirmer prérequis et dépendances</strong><p contenteditable="true">Accès, sécurité, dépôts, interlocuteurs et blocages.</p><small>À clarifier</small></article></div></div>
+<div class="lane" data-lane="doing"><h3>En cours <span class="count"></span></h3><div class="tasks"><article class="task" draggable="true" tabindex="0"><strong contenteditable="true">Concevoir / adapter le standard</strong><p contenteditable="true">Réalisation technique par le DevOps selon le périmètre validé.</p><small>Réalisation</small></article></div></div>
+<div class="lane" data-lane="review"><h3>À valider <span class="count"></span></h3><div class="tasks"><article class="task" draggable="true" tabindex="0"><strong contenteditable="true">Tester et faire valider</strong><p contenteditable="true">Vérifier les critères d’acceptation et consigner les preuves.</p><small>Validation</small></article></div></div>
+<div class="lane" data-lane="done"><h3>Terminé <span class="count"></span></h3><div class="tasks"><article class="task" draggable="true" tabindex="0"><strong contenteditable="true">Documenter et clôturer</strong><p contenteditable="true">Partager le résultat, les limites et les suites éventuelles.</p><small>Clôture</small></article></div></div>
+</div><p class="note">Astuce : cliquez sur le texte pour le modifier. Sur mobile, utilisez les boutons « Déplacer » de chaque carte si le glisser-déposer n’est pas pratique.</p>
+</section>
+<section class="panel"><h2>4. Statut Jira et règles de passage</h2>
+<label>Statut Jira actuel</label><select data-key="status"><option>À faire / To Do</option><option>En cours / In Progress</option><option>En revue / À valider</option><option>Bloqué</option><option>Terminé / Done</option></select>
+<div class="checklist">
+<div class="check"><input type="checkbox" data-key="gate1"><label>**À faire → En cours :** objectif, périmètre et responsable compris ; prérequis suffisamment identifiés.</label></div>
+<div class="check"><input type="checkbox" data-key="gate2"><label>**En cours → À valider :** livrable disponible et vérification prévue ou réalisée.</label></div>
+<div class="check"><input type="checkbox" data-key="gate3"><label>**À valider → Terminé :** critères d’acceptation satisfaits, documentation et suites consignées.</label></div>
+</div>
+<h3>Quand utiliser « Bloqué » ?</h3><p>Uniquement lorsqu’un obstacle empêche réellement d’avancer. Indiquer dans un commentaire : le blocage, son impact, l’action ou la décision attendue et l’interlocuteur concerné.</p>
+</section>
+<section class="panel"><h2>5. Journal de suivi / commentaires Jira</h2><p class="sub">Un commentaire lorsqu’il apporte une information utile : décision, progression significative, blocage ou validation.</p>
+<label>Dernier point de suivi</label><textarea data-key="update" placeholder="Date — réalisé / résultat ; reste à faire ; blocage ou décision attendue ; prochaine étape."></textarea>
+<label>Prochaine action et responsable</label><input data-key="next" placeholder="Action — responsable — date si nécessaire">
+<div class="actions no-print"><button id="copyUpdate">Copier le commentaire</button></div>
+<div class="callout"><strong>Exemple de commentaire court</strong>État : cadrage en cours. Réalisé : périmètre initial identifié. Reste à faire : confirmer les environnements et les critères de validation avec le DevOps. Blocage : aucun à ce stade. Prochaine étape : valider le périmètre avant adaptation du pipeline.</div>
+</section>
+<section class="panel"><h2>6. Préparer un point court</h2><p class="sub">Un échange de 10 à 15 minutes suffit souvent ; privilégier l’asynchrone si aucun arbitrage n’est nécessaire.</p>
+<div class="checklist">
+<div class="check"><input type="checkbox" data-key="meet1"><label>Le résultat depuis le dernier point est-il visible ou démontrable ?</label></div>
+<div class="check"><input type="checkbox" data-key="meet2"><label>Quel est le prochain livrable concret et quelle est la prochaine étape ?</label></div>
+<div class="check"><input type="checkbox" data-key="meet3"><label>Y a-t-il un blocage, un risque ou une décision à obtenir ?</label></div>
+<div class="check"><input type="checkbox" data-key="meet4"><label>La priorité et l’échéance restent-elles réalistes compte tenu des autres projets DevOps ?</label></div>
+</div>
+<h3>Rythme recommandé</h3><p>Suivi asynchrone dans Jira à chaque changement significatif ; point bref seulement en cas de jalon, de blocage ou de décision. Ne pas demander de compte rendu quotidien si le contexte ne le justifie pas.</p>
+</section>
+</div>
+</main>
+<footer>Modèle de travail — à adapter aux conventions Jira, à la définition de terminé et aux règles de changement / validation de l’entreprise. Les colonnes de ce document ne modifient pas automatiquement le statut Jira.</footer>
+<script>
+const key='kit-pilotage-ci-cd-v1';
+function collect(){const data={fields:{},lanes:[]};document.querySelectorAll('[data-key]').forEach(el=>data.fields[el.dataset.key]=el.type==='checkbox'?el.checked:el.value);document.querySelectorAll('.lane').forEach(l=>data.lanes.push({id:l.dataset.lane,cards:[...l.querySelectorAll('.task')].map(c=>({title:c.querySelector('strong').innerText,desc:c.querySelector('p').innerText,tag:c.querySelector('small').innerText}))}));return data}
+function apply(data){if(data.fields)document.querySelectorAll('[data-key]').forEach(el=>{const v=data.fields[el.dataset.key];if(v!==undefined){if(el.type==='checkbox')el.checked=v;else el.value=v}});if(data.lanes)data.lanes.forEach(l=>{const lane=document.querySelector('.lane[data-lane="'+l.id+'"] .tasks');if(!lane)return;lane.innerHTML='';l.cards.forEach(c=>lane.appendChild(makeCard(c.title,c.desc,c.tag)))})}
+function makeCard(title='Nouvelle étape',desc='Décrivez le résultat attendu.',tag='Étape'){const c=document.createElement('article');c.className='task';c.draggable=true;c.tabIndex=0;c.innerHTML='<strong contenteditable="true"></strong><p contenteditable="true"></p><small contenteditable="true"></small><div class="actions no-print"><button type="button" class="move">Déplacer →</button><button type="button" class="remove">Supprimer</button></div>';c.querySelector('strong').textContent=title;c.querySelector('p').textContent=desc;c.querySelector('small').textContent=tag;wireCard(c);return c}
+function wireCard(c){c.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain','card');window.dragged=c});c.querySelector('.move')?.addEventListener('click',()=>{const lanes=[...document.querySelectorAll('.lane')],i=lanes.indexOf(c.closest('.lane'));lanes[Math.min(i+1,lanes.length-1)].querySelector('.tasks').appendChild(c);counts()});c.querySelector('.remove')?.addEventListener('click',()=>{c.remove();counts()})}
+function counts(){document.querySelectorAll('.lane').forEach(l=>l.querySelector('.count').textContent='· '+l.querySelectorAll('.task').length)}
+document.querySelectorAll('.task').forEach(c=>{c.innerHTML+='<div class="actions no-print"><button type="button" class="move">Déplacer →</button><button type="button" class="remove">Supprimer</button></div>';wireCard(c)});
+document.querySelectorAll('.lane').forEach(l=>{l.addEventListener('dragover',e=>{e.preventDefault();l.classList.add('over')});l.addEventListener('dragleave',()=>l.classList.remove('over'));l.addEventListener('drop',e=>{e.preventDefault();l.classList.remove('over');if(window.dragged)l.querySelector('.tasks').appendChild(window.dragged);counts()})});
+document.getElementById('addStep').addEventListener('click',()=>{const c=makeCard();document.querySelector('[data-lane="todo"] .tasks').appendChild(c);c.querySelector('strong').focus();counts()});
+document.getElementById('save').addEventListener('click',()=>{try{localStorage.setItem(key,JSON.stringify(collect()));alert('Modèle enregistré dans ce navigateur.')}catch(e){alert('Enregistrement local indisponible dans ce contexte. Utilisez Imprimer / PDF pour conserver une copie.')}});
+document.getElementById('reset').addEventListener('click',()=>{if(confirm('Réinitialiser le formulaire et le workflow ? Rechargez la page pour restaurer le modèle initial.'))location.reload()});
+document.getElementById('copyDescription').addEventListener('click',()=>{const f=collect().fields;const t='Contexte / objectif\n'+f.context+'\n\nPérimètre / hors périmètre\n'+f.scope+'\n\nLivrables attendus\n'+f.deliverables+'\n\nCritères d’acceptation\n'+f.acceptance+'\n\nDépendances / risques / questions ouvertes\n'+f.risks; navigator.clipboard?.writeText(t).then(()=>alert('Description copiée.')).catch(()=>prompt('Copiez le texte ci-dessous :',t))});
+document.getElementById('copyUpdate').addEventListener('click',()=>{const f=collect().fields;const t='État : '+f.status+'\nPoint de suivi : '+f.update+'\nProchaine action : '+f.next; navigator.clipboard?.writeText(t).then(()=>alert('Commentaire copié.')).catch(()=>prompt('Copiez le commentaire ci-dessous :',t))});
+try{const s=localStorage.getItem(key);if(s)apply(JSON.parse(s))}catch(e){}counts();
+</script>
+</body></html>
