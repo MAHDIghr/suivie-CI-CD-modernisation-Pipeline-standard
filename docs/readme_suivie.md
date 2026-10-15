@@ -89,3 +89,32 @@ ensuite elle va me communiquer étapes de standardisation
 « Point réalisé avec Syrine le 15/10/2026. Le démarrage de l'analyse reste dépendant de l'accès au code source, attendu de Souheil. Après obtention de l'accès, l'étape prévue est d'identifier les éléments standardisables et de proposer une démarche. La décision sur la méthode de standardisation et les étapes détaillées restent à confirmer. Prochaine action : suivre l'accès, puis faire confirmer le périmètre, les livrables et la date du prochain jalon. »
 
 *Les dates d'échéance, charges, affectations et statuts Jira doivent être confirmés avec les personnes responsables avant mise à jour.*
+
+
+---
+
+## Précision de pilotage — conserver la sous-tâche Jira existante
+
+**Consigne :** les actions évoquées ci-dessus sont à suivre dans la sous-tâche Jira déjà existante. Ne pas créer de nouvelles sous-tâches ni découper davantage le travail à ce stade. Les titres de tickets suggérés plus haut sont des repères de contenu, pas une demande de création de tickets supplémentaires.
+
+### Mise à jour à faire dans Jira maintenant
+Ajouter un commentaire à la sous-tâche existante :
+
+> **Point de suivi du 15/10/2026**  
+> Lors du point avec Syrine, il a été confirmé que l'accès au code source doit encore être fourni par Souheil afin de permettre le démarrage de l'analyse.  
+>   
+> **Prochaine étape :** obtenir l'accès au code source, puis identifier les éléments pouvant être standardisés dans les pipelines CI/CD. La démarche de standardisation reste à préciser : une décision doit être prise sur l'approche à retenir. Syrine communiquera ensuite les étapes de standardisation.  
+>   
+> **Point de vigilance :** l'analyse ne peut pas être considérée comme démarrée tant que l'accès au code source n'est pas confirmé.
+
+### Quand mettre à jour cette même sous-tâche
+- **Lorsque l'accès est accordé :** ajouter un commentaire confirmant que Syrine dispose de l'accès et peut commencer l'analyse.
+- **Après l'analyse :** consigner les éléments standardisables identifiés, les exceptions éventuelles et les décisions encore attendues.
+- **Lorsque Syrine communique les étapes :** mettre à jour le commentaire ou la description avec la démarche validée, les dépendances et les jalons confirmés.
+
+### Champs Jira à ne pas modifier sans confirmation
+- **Statut :** le laisser inchangé tant que l'avancement réel ne justifie pas une transition selon le workflow Jira.
+- **Responsable, estimation et échéance :** ne pas les renseigner sur la base d'hypothèses ; les faire confirmer.
+- **Description :** la modifier uniquement si elle ne correspond plus à l'objectif de la sous-tâche.
+
+L'objectif est de garder un suivi fidèle dans le ticket existant, avec des commentaires datés, sans doublons ni création de nouvelles tâches.
