@@ -297,12 +297,8 @@ Une même personne peut tenir plusieurs de ces rôles. L'important est de savoir
 Pour piloter ce chantier efficacement, gardez quatre habitudes : **clarifier avant de lancer, convenir d'une prochaine étape réaliste, mettre Jira à jour à partir de faits, et escalader les arbitrages plutôt que de faire pression sur les DevOps**. Votre valeur ajoutée est de faire circuler l'information et de permettre aux bonnes personnes de prendre les bonnes décisions au bon moment.
 
 
-## Point complémentaire — Sous-tâche IaC à cadrer
+## Sous-tâche IaC — État actuel et prochaine étape
 
-La demande IaC dispose pour le moment d’une description initiale, mais le sujet n’a pas encore été cadré collectivement.
+**État actuel :** la sous-tâche est dans le Backlog et contient une première description du responsable. Le sujet n’a pas encore été discuté collectivement ; le périmètre, le livrable attendu et les critères de validation restent à confirmer.
 
-- Confirmer avec le responsable l’objectif, le périmètre et le livrable attendu.
-- Identifier le référent DevOps, les dépendances éventuelles, la priorité et la disponibilité nécessaire.
-- Compléter Jira avec les éléments validés et définir une prochaine étape réaliste.
-
-Conserver la sous-tâche existante et ne pas inventer de détails techniques ni la redécouper avant le cadrage. Si nécessaire, prévoir un court échange avec le référent technique.
+**Prochaine étape :** organiser un court échange avec le responsable pour clarifier le besoin, identifier le référent DevOps et convenir des prochaines actions. Mettre ensuite à jour Jira avec les éléments confirmés, sans créer de sous-tâches supplémentaires à ce stade.
