@@ -5,14 +5,28 @@ la réponse doit etre claire et proffessionelle et adapté à un environement d'
 
 DEMANDE : 
 
-Actuellement je pilote un 2 sous taches dans un projet de modernisation de chaine CI/CD 
-on est actuellement dans la phase de standardisation des piplines pour lambda 
-c est une sous tache dans un ticket jira qui posede 4 sous taches et ce ticket se trouve dans un projet de modernisation. 
-maintenant ce ticket a été assigné a un devops 
-maintenant je souhaite que tu me redige un document ou je vais savoire comment piloter cette sous tache sachant 
-donc ce que je doit definir et ce que je doit renseigner sur cette sous tache dans jira dans la description et les commentaires et meme l etats de la sous taches et ....... 
-sans trop compliquer les choses d une façon proffessionelle et légére sur les équipes devops car ils sont sur d'autres projets en paralels. 
-je souhiate un fichier HTML avec un beau designe avec aussi une partie pour costruire un workflow des etapes de réalisation de cette sous taches 
-sous forme de case modifiable que je peut glisser vers le workflow 
-ce model de fichier doit etre un standard que je peux réutiliser pour mes prochaines points pour d autre sous taches 
-les resultats c est un fichier HTML et un reponse.md qui contient les explication et les conseils et les bonnes pratique et structure 
+Je suis chef de projet dans une entreprise et je viens de commencer mon contrat en alternance.
+Je souhaite que tu m’expliques clairement et en détail, afin de me cadrer et de me guider, car je suis en autonomie.
+
+Je suis dans l’équipe Cloud.
+Nous travaillons sur plusieurs projets, dont un projet de modernisation CI/CD.
+Ce projet est découpé en plusieurs chantiers (sous forme de tickets Jira), et chaque chantier est lui‑même découpé en sous‑tâches selon le besoin.
+
+Je vais commencer à piloter le chantier qui concerne la standardisation des pipelines.
+Dans ce chantier, j’ai 4 sous‑tâches : standardisation des pipelines pour les applications Python, pour l’IaC, pour Node/NPM et pour Lambda.
+
+Nous travaillons sur Jira et l’équipe est composée de DevOps.
+J’ai déjà 3 sous‑tâches assignées à des DevOps (une pour chacun) et il me reste une sous‑tâche qui n’est pas encore affectée.
+Le travail n’a pas encore commencé : les sous‑tâches sont pour l’instant dans l’état « Backlog ».
+
+Maintenant, je souhaite que tu m’expliques en détail et clairement comment piloter ce chantier.
+À noter que les DevOps travaillent en parallèle sur d’autres projets, parfois plus prioritaires que ce chantier, donc ils ne sont pas disponibles tout le temps : c’est là le défi, il faut faire avancer ce chantier.
+
+Explique‑moi tout :
+
+comment structurer le ticket Jira et les sous‑tâches dans ce ticket,
+quoi mettre dans la description et les commentaires .....
+comment piloter et mettre à jour les différents états du chantier et des sous‑tâches,
+comment communiquer et quand organiser des points ........
+Je souhaite piloter ce chantier comme un professionnel, de manière très efficace, sans mettre trop de pression sur les équipes.
+Ne complique pas trop les choses : sois plutôt précis, professionnel et clair.
