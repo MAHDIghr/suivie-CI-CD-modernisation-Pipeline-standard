@@ -6,27 +6,300 @@ la réponse doit etre claire et proffessionelle et adapté à un environement d'
 DEMANDE : 
 
 Je suis chef de projet dans une entreprise et je viens de commencer mon contrat en alternance.
-Je souhaite que tu m’expliques clairement et en détail, afin de me cadrer et de me guider, car je suis en autonomie.
+Tu es un PMO / Delivery Manager Senior spécialisé dans les projets de transformation DevOps.
 
-Je suis dans l’équipe Cloud.
-Nous travaillons sur plusieurs projets, dont un projet de modernisation CI/CD.
-Ce projet est découpé en plusieurs chantiers (sous forme de tickets Jira), et chaque chantier est lui‑même découpé en sous‑tâches selon le besoin.
+Je souhaite que tu génères un rapport de suivi exécutif professionnel sous forme d'un unique fichier HTML autonome (HTML + CSS + JavaScript dans le même fichier).
 
-Je vais commencer à piloter le chantier qui concerne la standardisation des pipelines.
-Dans ce chantier, j’ai 4 sous‑tâches : standardisation des pipelines pour les applications Python, pour l’IaC, pour Node/NPM et pour Lambda.
+Le rendu doit être moderne, clair, visuel, professionnel et de niveau comité de pilotage (COPIL).
 
-Nous travaillons sur Jira et l’équipe est composée de DevOps.
-J’ai déjà 3 sous‑tâches assignées à des DevOps (une pour chacun) et il me reste une sous‑tâche qui n’est pas encore affectée.
-Le travail n’a pas encore commencé : les sous‑tâches sont pour l’instant dans l’état « Backlog ».
+Le design doit s'inspirer de :
 
-Maintenant, je souhaite que tu m’expliques en détail et clairement comment piloter ce chantier.
-À noter que les DevOps travaillent en parallèle sur d’autres projets, parfois plus prioritaires que ce chantier, donc ils ne sont pas disponibles tout le temps : c’est là le défi, il faut faire avancer ce chantier.
+Power BI
+Azure DevOps Dashboard
+Atlassian Jira Advanced Roadmaps
+McKinsey Executive Reports
+Consulting Dashboard
 
-Explique‑moi tout :
+Je souhaite beaucoup de visuels, de schémas, de KPI et de représentations graphiques afin qu'un manager puisse comprendre immédiatement la situation du chantier.
 
-comment structurer le ticket Jira et les sous‑tâches dans ce ticket,
-quoi mettre dans la description et les commentaires .....
-comment piloter et mettre à jour les différents états du chantier et des sous‑tâches,
-comment communiquer et quand organiser des points ........
-Je souhaite piloter ce chantier comme un professionnel, de manière très efficace, sans mettre trop de pression sur les équipes.
-Ne complique pas trop les choses : sois plutôt précis, professionnel et clair.
+Contexte général du projet
+
+Projet :
+
+Modernisation CI/CD
+
+Chantier :
+
+Standardisation des pipelines CI/CD
+
+Objectif :
+
+Définir des standards de référence pour les technologies utilisées au sein des équipes de développement :
+
+Java
+Python
+Node.js / NPM
+AWS Lambda
+Infrastructure as Code (IaC)
+
+Les standards devront définir :
+
+les étapes obligatoires des pipelines
+les contrôles qualité
+les contrôles sécurité
+les bonnes pratiques
+les recommandations d'implémentation
+
+Livrables obligatoires :
+
+Schéma visuel du pipeline standard
+Documentation du pipeline standard
+Gouvernance
+
+Responsable du suivi du chantier :
+
+Kamel Mahdi GHERBI
+
+Référent technique :
+
+Ioannis ANAGNOSTOPOULOS
+
+Contributeurs :
+
+Syrine BARNOUSSI
+
+Souheil MAALAOUI
+
+Organisation actuelle
+
+Ticket principal :
+
+[CI/CD modernisation] Pipeline standard
+
+Sous-tâches :
+
+Pipeline standard Java
+Pipeline standard Python
+Pipeline standard Node.js / NPM
+Pipeline standard AWS Lambda
+Pipeline standard IaC
+État global
+
+Le chantier est actuellement en phase de cadrage et de définition des standards.
+
+Une estimation cohérente de l'avancement global est autour de 35%.
+
+Détail des sous-tâches
+Java
+
+Responsable :
+
+Syrine BARNOUSSI
+
+Statut :
+
+En cours de développement
+
+Avancement estimé :
+
+60%
+
+Situation :
+
+Description détaillée disponible
+Schéma du pipeline déjà disponible
+Documentation complète encore à finaliser
+
+Prochaine étape :
+
+Finalisation de la documentation
+Validation du standard
+
+Dépendances :
+
+Validation du standard
+Premier déploiement sur un périmètre applicatif
+Node.js / NPM
+
+Responsable :
+
+Souheil MAALAOUI
+
+Statut :
+
+En cours de développement
+
+Avancement estimé :
+
+40%
+
+Contexte :
+
+Applications Node.js :
+
+Quotidienne (CI Legacy)
+Open (CI Legacy)
+BND (CI Legacy)
+JP (CI Legacy)
+LD-Actu (Nouvelle CI)
+MyArea (Nouvelle CI)
+OnePortal-Avocat (référence)
+Skillia (à confirmer)
+
+Librairies :
+
+design-system
+gateway-component
+jp-components
+bnd-components
+oneportal-avocat-component
+isomorphic-utils
+
+Situation :
+
+Analyse de l'existant en cours
+Identification du pipeline de référence
+Analyse des recommandations Tech Office
+
+Décision ouverte :
+
+Il reste à clarifier si le livrable final sera :
+
+Option A : un pipeline standard codé
+
+Option B : un référentiel avec schéma, étapes et contrôles obligatoires
+
+Prochaine étape :
+
+Production du schéma du pipeline standard
+Identification des contrôles obligatoires
+
+Dépendances :
+
+Validation de l'approche avec les parties prenantes
+Python
+
+Responsable :
+
+À définir
+
+Statut :
+
+En cours d'analyse
+
+Avancement :
+
+10%
+
+Situation :
+
+Cadrage à réaliser avec le Tech Office
+Méthode d'installation commune à définir
+Pipeline de référence à identifier
+
+Prochaine étape :
+
+Atelier avec le Tech Office
+
+Dépendances :
+
+Validation de la stratégie commune
+AWS Lambda
+
+Responsable :
+
+À définir
+
+Statut :
+
+En cours d'analyse
+
+Avancement :
+
+10%
+
+Situation :
+
+Analyse des implémentations existantes
+Étude des mécanismes de déploiement
+
+Prochaine étape :
+
+Définir les éléments standardisables
+
+Dépendances :
+
+Alignement architecture
+IaC
+
+Responsable :
+
+Souheil MAALAOUI
+
+Statut :
+
+Backlog
+
+Avancement :
+
+5%
+
+Situation :
+
+Standard à définir
+Sonar identifié comme contrôle minimum
+
+Dépendance majeure :
+
+Les travaux IaC démarreront après les premiers livrables Node.js / NPM.
+
+Prochaine étape :
+
+Cadrage du périmètre
+Identification des technologies cibles
+Réalisations
+Réorganisation du ticket principal
+Création des sous-tâches dédiées
+Définition du référentiel commun CI/CD
+Cadrage Node.js / NPM réalisé
+Livrables obligatoires définis (schéma + documentation)
+Risques
+Disponibilité limitée des contributeurs
+Dépendance vis-à-vis du Tech Office
+Hétérogénéité des technologies
+Variantes mono-repo / multi-repo
+Différences de versions techniques
+Attentes encore à clarifier sur certains standards
+Opportunités
+Réduction du temps de mise en CI
+Réduction de la dette technique
+Réutilisation de pipelines standardisés
+Harmonisation des bonnes pratiques
+Amélioration de la qualité logicielle
+Renforcement de la sécurité
+Simplification de l'onboarding des équipes
+Accélération du déploiement des futurs projets
+Ce que je veux dans le dashboard
+
+Je veux obligatoirement :
+
+Une page d'accueil exécutive
+Des KPI visuels
+Des jauges d'avancement
+Des graphiques modernes
+Un organigramme des responsabilités
+Un schéma d'affectation des sous-tâches
+Un diagramme de dépendances entre sous-tâches
+Une roadmap visuelle
+Une heatmap des risques
+Une section opportunités
+Une vue détaillée par sous-tâche
+Une vue synthétique pour management
+Une charte graphique moderne bleu foncé / Azure / DevOps
+Responsive desktop et mobile
+Icônes et animations discrètes
+Apparence premium et professionnelle
+
+Je veux un résultat de niveau comité de pilotage, très visuel, moderne et immédiatement compréhensible par un responsable technique ou un manager.
+
+tout sa dans un fichier HTML et une version PDF
