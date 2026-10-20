@@ -302,3 +302,22 @@ Pour piloter ce chantier efficacement, gardez quatre habitudes : **clarifier ava
 **État actuel :** la sous-tâche est dans le Backlog et contient une première description du responsable. Le sujet n’a pas encore été discuté collectivement ; le périmètre, le livrable attendu et les critères de validation restent à confirmer.
 
 **Prochaine étape :** organiser un court échange avec le responsable pour clarifier le besoin, identifier le référent DevOps et convenir des prochaines actions. Mettre ensuite à jour Jira avec les éléments confirmés, sans créer de sous-tâches supplémentaires à ce stade.
+
+
+## Dashboard exécutif — livrables créés
+
+### Point de départ
+Le dashboard a été construit à partir des informations disponibles dans `DEMANDE.md` sur le chantier **Modernisation CI/CD / Standardisation des pipelines CI/CD**. Les chiffres et affectations présentés correspondent à cet état initial et ne constituent pas une lecture en temps réel de Jira. Les données doivent être reconfirmées avec les responsables avant toute communication COPIL.
+
+### Livrables
+- **`dashboard-pipeline-standard.html`** : dashboard autonome (HTML, CSS et JavaScript dans un seul fichier), responsive desktop/mobile, avec KPI, jauges d'avancement, responsabilités, affectation des sous-tâches, dépendances, roadmap indicative, risques, opportunités et synthèse par technologie.
+- **Export PDF** : ouvrir le fichier HTML dans un navigateur puis cliquer sur « Exporter PDF ». La mise en page d'impression est intégrée au fichier et permet d'enregistrer le dashboard au format PDF sans dépendance externe.
+
+### Contenu et précautions
+Le dashboard reprend les estimations initiales (avancement global 35 % ; Java 60 %, Node/NPM 40 %, Python 10 %, Lambda 10 %, IaC 5 %), les contributeurs et les prochaines étapes décrites dans la demande. Il distingue les informations fournies des dépendances et jalons proposés. Les niveaux de risque sont qualitatifs et indicatifs ; ils ne doivent pas être interprétés comme une évaluation validée. Les dates ne sont pas inventées : elles restent à définir avec les contributeurs.
+
+### Utilisation
+1. Ouvrir `dashboard-pipeline-standard.html` dans un navigateur récent.
+2. Vérifier les affectations, statuts et pourcentages par rapport à Jira.
+3. Pour générer le PDF, sélectionner « Exporter PDF », puis « Enregistrer au format PDF » dans la boîte de dialogue d'impression.
+4. Avant un COPIL, mettre à jour les données et faire valider les points techniques par le référent.
