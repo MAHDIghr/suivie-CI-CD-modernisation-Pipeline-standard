@@ -321,3 +321,24 @@ Le dashboard reprend les estimations initiales (avancement global 35 % ; Java 60
 2. Vérifier les affectations, statuts et pourcentages par rapport à Jira.
 3. Pour générer le PDF, sélectionner « Exporter PDF », puis « Enregistrer au format PDF » dans la boîte de dialogue d'impression.
 4. Avant un COPIL, mettre à jour les données et faire valider les points techniques par le référent.
+
+
+## Mise à jour du dashboard selon DEMANDE.md — 20/10/2026
+
+### Point de départ
+La demande de référence est le fichier `DEMANDE.md` à la racine de la branche `main`. Le dashboard existant `dashboard-pipeline-standard.html` a été mis à jour en conservant sa structure et son design visuel. Les modifications portent sur les informations métier et de pilotage demandées pour la situation au 20 octobre 2026.
+
+### Modifications réalisées
+- Mise à jour de l’avancement global à **30 %**, conformément à la demande.
+- Actualisation de la gouvernance : Kamel Mahdi GHERBI assure le pilotage opérationnel ; Syrine BARNOUSSI est référente technique et porte Java, Python et Lambda ; Souheil MAALAOUI porte Node.js/NPM et IaC.
+- Précision du blocage Lambda : accès au code et résolution préalable des sujets côté développement ; identification d’un cas de référence comme prochaine étape.
+- Ajout d’une section **Réalisations du chantier**.
+- Ajout d’une section **Décisions ouvertes** avec les trois arbitrages : modèle de standard Node.js/NPM, approche Python et stratégie Lambda.
+- Ajout d’une **Synthèse management** mettant en évidence les priorités : documentation Java, schéma Node.js/NPM, cadrage Python et déblocage/cadrage Lambda.
+- Conservation du mécanisme d’export PDF via le bouton « Exporter PDF ».
+
+### Points de vigilance
+Les pourcentages par stream et les statuts sont ceux indiqués dans la demande, pas une synchronisation automatique avec Jira. Les risques et les dates doivent rester pilotés à partir des informations confirmées par les responsables. La dépendance Node.js/NPM vers IaC est explicitement indiquée dans la demande.
+
+### Fichier mis à jour
+[`dashboard-pipeline-standard.html`](https://github.com/MAHDIghr/suivie-CI-CD-modernisation-Pipeline-standard/blob/main/dashboard-pipeline-standard.html)
