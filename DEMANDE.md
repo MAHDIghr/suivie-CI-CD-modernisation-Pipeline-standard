@@ -4,468 +4,146 @@ la réponse doit etre claire et proffessionelle et adapté à un environement d'
 
 
 DEMANDE : 
-Tu dois mettre à jour un dashboard HTML qui se trouve dans le repo main de pilotage projet relatif au chantier [CI/CD modernisation] Pipeline standard.
+je suis chef de projet et je vais bientot reprendre un sujet et je vien d'effectuer aussi un point avec l'architecte technique 
+maintenant je viens de creer un ticket jira afin de préparer la reprise de cxe sujet et la mise en place de cette solution 
 
-⚠️ Important :
 
-Conserver intégralement le design existant.
-Mettre à jour uniquement le contenu métier et les informations de pilotage.
-Le résultat doit refléter l'état réel du chantier au 20/10/2026.
-Le dashboard doit être pensé pour un manager ou sponsor qui découvre le projet.
-Gouvernance du chantier
-Pilotage
+voici les detailles concernant le sujet : 
 
-Responsable du suivi opérationnel
+Les administrateurs accèdent actuellement aux serveurs et aux infrastructures en utilisant leurs connexions VPN et en réalisant des rebonds directs vers les ressources à administrer. Ce fonctionnement ne permet pas de centraliser suffisamment les accès ni de disposer d’une traçabilité complète et facilement exploitable des opérations réalisées.
 
-Kamel Mahdi GHERBI
+La mise en place du Bastion Guacamole répond donc à un besoin de renforcement de la sécurité et de maîtrise des accès administrateurs. Le bastion constituera un point de passage centralisé entre les administrateurs et les serveurs, avec une authentification sécurisée.
 
-Rôle :
 
-Pilotage du chantier
-Coordination des contributeurs
-Mise à jour du reporting
-Suivi de l'avancement
-Gestion des risques et dépendances
-Référent technique
-Syrine BARNOUSSI
+et voici quelques detaille d'aprés la transcription de notre discussion : 
 
-Rôle :
+cette solution  ça va permettre de voir toutes les actions d'administration qui s'est connecté, et cetera. C'est le principe d'invention sur un bastion
+ ça va permettre de voir toutes les actions d'administration qui s'est connecté, et cetera. C'est le principe d'invention sur un bastion
+par exemple  Mahdi si toi tu te connectes sur cette machine là bah globalement il y aura marqué que tu t'es connecté à 10h32 et puis on aura un petit bouton avec marqué bah voilà Regardez la session de Mahdi.
+Donc on pourra, on pourra voir que t'as fait tu t'es connecté en route sur le serveur, que t'as t'as supprimé des fichiers de logs et cetera, donc ça on pourra le voir.
+Et donc c'est le but de ce bastion. Ce qu'il faut savoir, c'est important pour vous de le savoir. Et c'est pour ça que Cyril active ce sujet-là et qu'il va falloir le traiter assez rapidement. 
+On a une ambition d'avoir du génial 1.5 côté neurones.
+Une instance spécifique dédiée à certains clients. On va dire ça dans les petits papiers c'est donc du coup pour se faire certifier  il faut un bastion absolument pour rebondir sur les infras.
+Donc c'est très critique comme sujet.
+et donc du coup ça, on a dit qu'il fallait que ça atterrisse au mois de janvier.
+Donc c'est pour ça que Cyril démarre le sujet, qu'il faut mettre un chef de projet sur le sujet, c'est que là il va falloir faire un rétroplanning sur cette partie pour savoir quand est-ce qu'on comment on fait pour arriver au mois de janvier.
 
-Référent technique principal du chantier
-Contribution aux standards
-Responsable des streams :
-Java
-Python
-Lambda
-Contributeur principal
-Souheil MAALAOUI
+Parce que c'est un socle d'infra donc qui est dissocié de ce nouveau socle, mais qui va être impératif pour se connecter à ce nouveau socle.
 
-Responsable des streams :
 
-Node.js / NPM
-IaC
-État global du chantier
-Situation
 
-Le chantier est actuellement dans une phase de :
+Et le POC est validé ou pas encore, il reste encore la finalisation ?
 
-Plain Text
-1
-Cadrage
-2
-Structuration des standards
-3
-Formalisation des premiers livrables
-Afficher plus de lignes
+réponse : 
+Eh Ben en fait pour le POC les machines sont instanciées, le socle est configuré mais par contre personne ne  l'a vraiment utilisé. Donc c'est pour ça que comme Ali c'est pareil, il est alternant.
 
-Les sous-tâches Java et Node.js/NPM sont les plus avancées.
+Bah en fait il est parti à l'école une fois qu'il avait monté cette plateforme. Bah on a attendu la semaine prochaine comme il revient pour voir avec Cyril quelles sont les prochaines étapes.
 
-Les travaux Python et Lambda sont dépendants d'éléments encore à clarifier.
 
-Le volet IaC dépend directement des premiers livrables Node.js/NPM.
+Et du coup les prochaines étapes c'est bah je mets la plateforme même si c'est du Poc, je prends 2 ou 3 admins et je leur dis maintenant vous avez pas d'autre choix que de passer par là et vous Regardez si au quotidien ça vous perturbe pas trop pour faire votre boulot. (pour la finalisation du POC)
 
-Avancement global estimé
-Plain Text
-1
-30%
-Afficher plus de lignes
-Livrables obligatoires retenus
+Ok et dans le prochain objectif tâche Julien, pourquoi tu parlais de Johan ? Il y a quoi ? Comme pour par la suite que j'avais prévu de toute façon faire dans l'immédiat.
 
-Pour tous les standards :
+Alors en fait, et là c'est un petit peu plus casse-pied, c'est que cette machine-là.
 
-Schéma visuel du pipeline standard
-Documentation du pipeline standard
-Sous-tâche Java
-Responsable
+Elle va devenir hypercritique.
 
-Syrine BARNOUSSI
+Donc cette machine là comme elle aura accès à tous les autres serveurs derrière. Tu sais actuellement les admins, ils peuvent se connecter à toutes les machines en SSH tu vois, ils peuvent se connecter à ces serveurs là directement en SSH et by passer cette infrastructure.
 
-État
+Eh Ben ça demain faut plus que ça soit possible. Donc il y a plein de trucs sur lesquels il va falloir enlever les mécanismes de se connecter en SSH et un truc qui nous permettrait de se latéraliser c'est typiquement Vtom Vtom. Tout le monde a accès à la console vetum.
 
-En cours de développement
+Donc demain ?
 
-Avancement estimé
+Si je me connecte à V Tom, et V Tom a accès en SSH à l'autre console.
+Bah en fait mon bastion il sert à rien parce que je peux me déplacer à côté de mon bastion, tu vois ce que je veux dire ?
+Je peux me connecter à V Tom puis ensuite rebondir depuis V Tom vers un serveur qui a le port 22 ouvert et puis ensuite rebondir de l'autre côté donc tu as moyen de bypasser le bastion en faisant des rebonds latéraux.
+Et ça, c'est problématique si on veut être cohérent.
 
-60%
+Donc il faut bloquer toutes les autres sources, il faut laisser que le bastion pour accéder au serveur ?
 
-État réel
+Alors y a exactement ce que tu dis mais y a même plus plus compliqué que ça. Il faut surtout que depuis les VTOM ou depuis les machines type Cyberwatch, Bah ces machines qui étaient critiques pour le SI Ben on ne puisse plus latéraliser typiquement.
 
-Les éléments disponibles :
+Cyberwatch, qui est notre outil de détection de failles de vulnérabilité.
 
-Description détaillée du standard
-Schéma CI
-Schéma CD
+Jusqu'à maintenant, il a accès en SSH à toutes les machines et tous les admins ont accès à cyberwatch.
+Donc ça veut dire que tu rebondis sur cyberwatch et après tu rebondis un peu n'importe où.
+Donc c'est un peu c'est un peu pénible. Donc il faut sécuriser toute la chaîne si on veut être cohérent parce que sinon ça fait aucun sens de mettre un bastion. Si bah c'est comme mettre une porte coupe-feu chez toi, une porte coupe-feu chez toi. Et puis il y a juste à côté de la porte coupe-feu. Comme elle était pas pratique, elle était lourde, tu remets une porte classique.
+Ben voilà donc c'est un peu la même chose. Donc là l'idée c'est d'être cohérent sur toute la chaîne. Sinon c'est un peu alors il y a faut pas qu'on se le cache Il y a un volet un peu marketing parce que côté côté client on a dit qu'on passait par un bastion donc il y a le marketing qui nous imposera d'avoir un bastion.
+Il y a aussi le fait qu'on veut être honnête avec nous intellectuellement et on veut avoir un bastion pour protéger les infras donc il faut qu'on soit cohérent sur toute la chaîne sinon ça sert à rien.
 
-Documentation détaillée encore à produire.
 
-Commentaire important
+OK donc pour dire les choses autrement, ça veut dire que ces chantiers-là ils provoquent un chantier un peu plus global à côté pour sécuriser le reste en fait c'est ça tu voulais dire ?
 
-D'après Syrine :
+Voilà !
 
-Plain Text
-1
-Je suis déjà sur la partie Java et j'avance également sur la partie Trivy (celle du schéma).
-2
- 
-3
-Pour Trivy, on est encore en mode POC et il existe un ticket dédié.
-Afficher plus de lignes
-Dépendances
-Documentation du standard
-Validation finale du standard
-Premier déploiement sur un périmètre applicatif pilote
-Réalisations
-Description du standard disponible
-Schémas disponibles
-Trivy étudié dans le cadre du POC
-Prochaine étape
+Ouais, alors peut-être pas global, mais en tout cas certaines réflexions, et c'est exactement ça. Ioannis, tu le vulgarises très bien, c'est que ça déclenche d'autres réflexions qu'on s'était jamais posées jusqu'à maintenant. Mais c'est normal parce que c'était assez perméable et donc du coup, faut qu'on.
 
-Finalisation de la documentation Java.
+OK et à ton avis Julien pour le pour la suite là. Et on pourrait travailler comment ? C'est à dire sur quel sur les 2 aspects en parallèle où on met en priorité je suppose la mise en place du patient parce que c'est quand même une priorité.
 
-Sous-tâche Python
-Responsable
+Ah non faut avancer sur les 2 sujets en parallèle parce que sinon on n'arrivera pas à respecter les échéances. On peut pas faire ça. Première étape, 2e étape, là faut les 2 chantiers se font en parallèle et dans tous les cas c'est pas très grave parce que dans tous les cas faudra avancer sur le bastion.
 
-Syrine BARNOUSSI
+Et en fait, c'est pas forcément les mêmes équipes qui s'occupent de la partie flux, tu vois ?
 
-État
+Exactement la sécurisation, le fait de pas pouvoir bypasser le bastion.
 
-En cours d'analyse
+, c'est comment vous tu vois les choses en fait que qu'est-ce qu'on pourrait faire de notre côté pour commencer à mettre ça en mode plutôt projet ou on peut planifier une réunion comment tu vois les choses ?
 
-Avancement estimé
+Par rapport à ça pour la suite.
 
-10%
+Moi, je pense que le sujet, il était.
 
-Objectif
+Un peu mis de côté jusqu'à jusqu'à mardi prochain en fait. Donc moi je peux inviter Mahdi. Je pense que c'est hyper important que il y ait un il y ait un chef de projet qui reprenne le relais et ça serait dommage je pense d'attendre ton retour. Johannes.
 
-Définir :
+Après normalement pour les 2 parties sécurisation et mise en place, normalement elles sont indépendantes.
 
-Méthode d'installation commune
-Pipeline standard Python
-Contrôles qualité
-Sonar
-Trivy
-SBOM
-Dépendances
-Validation Tech Office
-Définition de la méthode commune
-Prochaine étape
+Exactement c'est tout à fait. En fait on peut avancer sur les 2 chantiers en parallèle mais c'est faut que les 2 chantiers soient terminés pour que le bastion ait beaucoup de sens. Si on termine juste le chantier bastion, bah c'est l'histoire de la porte coupe-feu et la porte incendie qui sont l'une à côté de l'autre.
 
-Atelier de cadrage.
+C'est exactement ça. Le point, c'est que si on veut avoir un bastion vraiment très utile, faut terminer les 2 chantiers en même temps. Quand on en termine qu'un, on peut se dire qu'il est à peu près utile, mais que les gens, s'ils ont envie de nuire sur le système d'information, ils peuvent le bypasser. Donc ça remet un petit peu en question sa légitimité.
 
-Sous-tâche Lambda
-Responsable
-
-Syrine BARNOUSSI
+ il y a juste une petite précision pour le poke vu que il reste juste normalement d'après ce que j'ai compris il reste sa validation. Enfin ils vont l'utiliser les vous allez mettre quelques admins qui vont l'utiliser au.
 
-État
+Au quotidien, et c'est comme une phase de test quoi en.
 
-En cours d'analyse
+Ouais, c'est une petite phase de une petite phase de poke pour vérifier que parce qu'en fait ce qu'il faut savoir c'est que ce sujet il est dans le pipe depuis un moment et qu'on a fait un devis à en l'occurrence, c'était.
 
-Avancement estimé
-
-10%
+Téléporte.
 
-Situation réelle
+Donc c'est une solution de bastion propriétaire qui a fait un devis à plusieurs centaines de milliers d'euros et on s'est dit bon en dans un premier temps on va commencer par quelque chose d'open source et on va pas sortir 100000€ pour gérer ça.
 
-Le démarrage est actuellement bloqué.
+Donc pour l'instant on part sur guacamole et là l'idée c'est de vérifier comme c'est une solution on va dire un peu plus low cost. Alors dans les faits c'est un très bon bastion. Mais comme c'est un peu plus low cost, on veut vérifier que tous les cas d'usage qu'on s'était donné au début.
 
-D'après Syrine :
+Soit traitable par cette solution. C'est pour ça qu'on fait cette ce petit pop Pilot en fait. Mais alors ta question sous-jacente est très bonne, c'est est ce qu'on peut en parallèle de ça commencer à construire la DEV, la pré prod et la prod ?
 
-Plain Text
-1
-Je ne peux pas commencer tant que je n'ai pas accès au code.
-2
-J'attends que les problèmes côté développement soient résolus.
-3
-Je regarderai ensuite le sujet avec Souheil.
-Afficher plus de lignes
-Dépendances
-Accès au code
-Résolution des sujets côté développement
-Échanges avec Souheil
-Risque spécifique
+Ouais, c'est ça, c'est juste histoire de savoir quand est-ce qu'on va passer aux prochaines étapes.
+Bah alors les prochaines étapes pour moi c'est qu'on se fait le point mardi prochain, mais pour les prochaines étapes de construction et d'intégration on peut aller relativement vite parce que bah globalement on pourrait déjà lancer la création.
 
-Pas de candidat d'étude exploitable disponible à ce jour.
+Faire le poke pilote et en parallèle construire les environnements à côté Faire une pré prod et une prod tu vois faut voir à quel moment on essaie de se dire Bon bah là maintenant on passe en pré prod et en prod.
 
-Prochaine étape
+Et comme ça tu peux, tu peux commencer à prendre connaissance de je sais pas si tu le das et tout ça ou Julien pour nous le partager aussi tu commences à te renseigner sur le
 
-Identifier un cas de référence utilisable.
 
-Sous-tâche Node.js / NPM
-Responsable
+Tu étais, tu étais dessus donc je pense que t'as les infos. Alors c'est une première version de DAS Faudra que je l'améliore là c'est de ma faute, c'est juste qu'il faut du temps pour ça. Mais l'idée c'est un das de poc Il me semble qu'il y a pas si longtemps il y avait pas de das en poc.
 
-Souheil MAALAOUI
+J'essaye de mettre ça en place et d'exiger ça auprès de l'équipe. Donc maintenant on a des DAS de POC qui sont pas incroyables mais qui ont le mérite d'exister et qui présentent ce qui est en place. Donc tu peux voilà là tu as le lien.
 
-État
+Alors qui est globalement assez vide mais donc du coup une fois qu'on va avoir le POC il va falloir vite créer. Donc on aura 2 environnements, une pré prod et une prod, la pré prod pour monter les pour tester les montées de versions et la production ça sera l'environnement qui sera vraiment utilisé par tout le monde.
 
-En cours de développement
+On a pas besoin d'autres environnements et l'idée c'est de monter tout ça rapidement. Et puis après Ioannis, il y aura le build to run, tout ça, tout ça les choses habituelles.
 
-Avancement estimé
 
-40%
+fin de la conversastion. 
 
-Objectif
 
-Définir un standard pour :
 
-Applications Node.js
-Quotidienne
-Open
-BND
-JP
-LD-Actu
-MyArea
-OnePortal-Avocat
-Skillia (à confirmer)
-Librairies NPM
-design-system
-gateway-component
-jp-components
-bnd-components
-oneportal-avocat-component
-isomorphic-utils
-Lambda Node.js
-MyArea
-Content Platform
-JP
-Situation réelle
+pour ma demande je souhaite maintenant completer le ticket jira 
 
-Analyse en cours :
 
-Inventaire des applications
-Recherche d'un pipeline de référence
-Analyse des recommandations Tech Office
-Sujet ouvert
+avec le max d'info pratique d'une façon professionelle 
 
-Une question importante reste à trancher :
+donne moi tout ce que je peux mettre : 
+contexte (pas de but et objectif dans le contexte) , objectif, But, situation actuelle, risque , reflexion ...........
+commentaires(dépandance, observation ... ....
 
-Plain Text
-1
-Doit-on produire :
-2
- 
-3
-- un pipeline standard exécutable ?
-4
- 
-5
-ou
-6
- 
-7
-- un référentiel définissant étapes, règles et contrôles ?
-Afficher plus de lignes
+répond moi dans un fichier reponse1.md  reponse2.md reponse3.md
+avec 3 réponse afin que je choisi la meilleur 
 
-Cette réflexion est liée aux contraintes :
-
-mono-repo
-multi-repo
-versions différentes
-spécificités applicatives
-Opportunité majeure
-
-Souheil maîtrise fortement :
-
-les sujets développement
-les applications Node.js
-les librairies NPM
-
-Sa connaissance du périmètre est un accélérateur important pour la définition du standard.
-
-Livrables attendus
-Schéma du pipeline standard
-Documentation
-Méthode d'installation commune
-Prochaine étape
-
-Production du premier schéma du standard.
-
-Sous-tâche IaC
-Responsable
-
-Souheil MAALAOUI
-
-État
-
-Backlog
-
-Avancement estimé
-
-5%
-
-Situation réelle
-
-Point validé le 19/10 avec Souheil :
-
-Plain Text
-1
-Les travaux IaC démarreront après les premiers livrables Node.js/NPM.
-Afficher plus de lignes
-Dépendance principale
-
-Node.js / NPM
-
-Créer un schéma visuel montrant :
-
-Plain Text
-1
-Node.js / NPM
-2
-│
-3
-▼
-4
-IaC
-Afficher plus de lignes
-Contrôle identifié
-Sonar obligatoire
-Livrables
-Schéma visuel
-Documentation
-Pipeline de référence
-Contrôles qualité
-Contrôles sécurité
-Réalisations globales
-
-Ajouter une section "Réalisations" contenant :
-
-✅ Réorganisation du ticket principal
-
-✅ Création des sous-tâches par technologie
-
-✅ Formalisation du référentiel commun CI/CD
-
-✅ Définition des livrables obligatoires
-
-✅ Point de cadrage réalisé avec Souheil
-
-✅ Définition des dépendances entre Node.js/NPM et IaC
-
-✅ Documentation Java identifiée comme priorité
-
-Décisions prises
-
-Ajouter une section dédiée :
-
-✅ Le ticket principal pilote désormais l'ensemble du chantier.
-
-✅ Chaque technologie dispose d'une sous-tâche dédiée.
-
-✅ Livrables minimums obligatoires :
-
-Schéma visuel
-Documentation
-
-✅ Les standards devront intégrer les éléments qualité et sécurité.
-
-✅ IaC démarrera après les premiers livrables Node.js/NPM.
-
-Risques
-
-Mettre à jour la section risques :
-
-Risques élevés
-Disponibilité limitée des contributeurs
-Dépendance au Tech Office
-Ambiguïté sur le niveau de standardisation attendu pour Node.js / NPM
-Risques moyens
-Hétérogénéité des technologies
-Mono-repo / Multi-repo
-Différences de versions techniques
-Risques spécifiques
-Lambda bloqué par l'absence d'accès au code
-Documentation Java encore incomplète
-Opportunités
-
-Ajouter :
-
-Réduction du temps de mise en CI
-Réduction de la dette technique
-Standardisation et réutilisation des pipelines
-Industrialisation des bonnes pratiques
-Amélioration de la qualité logicielle
-Renforcement de la sécurité
-Simplification de l'onboarding
-Accélération des futurs projets
-Forte expertise Node.js / NPM portée par Souheil
-Décisions ouvertes
-
-Créer un KPI dédié :
-
-Plain Text
-1
-Décisions ouvertes : 3
-Afficher plus de lignes
-Décision 1
-
-Node.js / NPM :
-
-Plain Text
-1
-Pipeline standard exécutable
-2
-ou
-3
-Référentiel standard ?
-4
- 
-Afficher plus de lignes
-Décision 2
-
-Validation de l'approche Python.
-
-Décision 3
-
-Définition de la stratégie Lambda.
-
-Message de synthèse management
-
-Le dashboard doit faire apparaître clairement :
-
-Plain Text
-1
-Le chantier est bien structuré.
-2
- 
-3
-Le stream Java est le plus avancé.
-4
- 
-5
-Le stream Node.js/NPM est en cours de définition.
-6
- 
-7
-Python et Lambda restent en phase de cadrage.
-8
- 
-9
-Le stream IaC dépend directement des premiers livrables Node.js/NPM.
-10
- 
-11
-Les prochains livrables prioritaires sont :
-12
- 
-13
-- Documentation Java
-14
-- Schéma Node.js/NPM
-15
-- Cadrage Python
-16
-- Cadrage Lambda
-17
-``
-Afficher plus de lignes
-
-Le rendu doit être très visuel, orienté comité de pilotage, avec :
-
-KPI
-jauges
-diagrammes
-dépendances
-organigramme
-roadmap
-risque/opportunités
-synthèse manager immédiatement lisible.
