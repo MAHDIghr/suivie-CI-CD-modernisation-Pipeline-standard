@@ -342,3 +342,32 @@ Les pourcentages par stream et les statuts sont ceux indiqués dans la demande, 
 
 ### Fichier mis à jour
 [`dashboard-pipeline-standard.html`](https://github.com/MAHDIghr/suivie-CI-CD-modernisation-Pipeline-standard/blob/main/dashboard-pipeline-standard.html)
+
+
+## Dashboard HTML/CSS/JavaScript — workflow du programme CI/CD
+
+### Point de départ
+La réalisation s'appuie sur la demande présente dans `DEMANDE.md`, qui décrit le programme de standardisation des pipelines CI/CD et les niveaux d'avancement suivants : Java 90 %, Node.js/NPM 40 %, IaC 35 %, Lambda 20 % et Python 0 %. Les statuts détaillés des étapes sont repris de cette demande. Le dashboard n'est pas connecté à Jira : il représente les informations de départ fournies et devra être actualisé lorsque les statuts évolueront.
+
+### Livrables créés
+Les trois fichiers sont regroupés dans le dossier `dashboard-pipelines-ci-cd/` :
+- [`index.html`](https://github.com/MAHDIghr/suivie-CI-CD-modernisation-Pipeline-standard/blob/main/dashboard-pipelines-ci-cd/index.html) — structure du dashboard, vue programme et cinq vues détaillées.
+- [`style.css`](https://github.com/MAHDIghr/suivie-CI-CD-modernisation-Pipeline-standard/blob/main/dashboard-pipelines-ci-cd/style.css) — mise en forme professionnelle, responsive et styles d'impression A4 paysage.
+- [`script.js`](https://github.com/MAHDIghr/suivie-CI-CD-modernisation-Pipeline-standard/blob/main/dashboard-pipelines-ci-cd/script.js) — calcul de l'avancement moyen indicatif et déclenchement de l'impression PDF.
+
+### Contenu du dashboard
+- **Vue programme :** cinq cartes de synthèse, pourcentages d'avancement, cycle de standardisation et points de vigilance.
+- **Une vue par technologie :** workflow avec flèches, étapes terminées/en cours/à démarrer, réalisations ou travaux en cours et points ouverts.
+- **Export PDF :** le bouton « Exporter en PDF » ouvre la fenêtre d'impression du navigateur ; choisir ensuite « Enregistrer au format PDF ».
+- **Technologies utilisées :** HTML, CSS et JavaScript natifs, sans framework externe.
+
+L'avancement moyen affiché est une **moyenne simple non pondérée** des cinq pourcentages fournis : (90 + 40 + 35 + 20 + 0) / 5 = 37 %. Ce calcul est indicatif et ne constitue pas un indicateur officiel validé.
+
+### Utilisation
+1. Ouvrir `dashboard-pipelines-ci-cd/index.html` dans un navigateur.
+2. Parcourir la vue programme, puis sélectionner une carte ou un lien de navigation pour voir le workflow correspondant.
+3. Cliquer sur « Exporter en PDF », puis choisir « Enregistrer au format PDF » dans la fenêtre d'impression.
+4. Avant de partager le support en comité, confirmer que les statuts et pourcentages correspondent toujours à Jira.
+
+### Limites connues
+Les données sont statiques et ne se synchronisent pas automatiquement avec Jira. Les statuts « à démarrer » représentent les étapes indiquées comme non réalisées dans la demande ; les dates, responsables et jalons qui ne figurent pas dans la source ne sont pas inventés.
