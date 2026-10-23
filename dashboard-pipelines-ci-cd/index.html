@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Vue exécutive du programme de standardisation des pipelines CI/CD.">
+  <title>Programme de standardisation des pipelines CI/CD</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar no-print">
+    <a class="brand" href="#overview"><span class="brand-mark">CI</span><span>Pipeline Standard</span></a>
+    <nav aria-label="Navigation du dashboard">
+      <a href="#overview">Vue programme</a><a href="#java">Java</a><a href="#node">Node.js</a><a href="#iac">IaC</a><a href="#lambda">Lambda</a><a href="#python">Python</a>
+    </nav>
+    <button class="export-button" id="export-pdf" type="button">↓ Exporter en PDF</button>
+  </header>
+
+  <main>
+    <section class="page overview" id="overview">
+      <div class="eyebrow">PILOTAGE DU PROGRAMME · VUE EXÉCUTIVE</div>
+      <div class="hero-row">
+        <div><h1>Standardisation des<br><span>pipelines CI/CD</span></h1><p class="lead">Une vue synthétique des cinq standards technologiques et de leurs prochaines étapes.</p></div>
+        <div class="hero-meta"><span class="meta-label">Périmètre</span><strong>5 standards</strong><span class="meta-label">Source</span><strong>Demande fournie</strong></div>
+      </div>
+      <div class="overall-card">
+        <div><span class="label">Avancement moyen indicatif</span><div class="big-number"><span id="overall-value">37</span><small>%</small></div><p class="muted">Moyenne simple des 5 pourcentages fournis — non pondérée.</p></div>
+        <div class="overall-visual"><div class="donut" id="overall-donut" role="img" aria-label="Avancement moyen indicatif de 37 %"><span id="donut-value">37%</span></div><div class="legend"><span><i class="dot done"></i>Réalisé</span><span><i class="dot progress"></i>En cours</span><span><i class="dot todo"></i>À démarrer</span></div></div>
+      </div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Avancement par standard</h2></div><span class="section-note">Sélectionner une carte pour consulter le détail</span></div>
+      <div class="program-grid">
+        <a class="program-card" href="#java"><div class="card-top"><span class="technology">01 / JAVA</span><span class="status status-progress">En cours</span></div><div class="card-number">90<span>%</span></div><div class="progress-track"><span style="width:90%"></span></div><p>Documentation, MultiRepo et étude Trivy à suivre.</p><span class="card-link">Voir le workflow <b>↗</b></span></a>
+        <a class="program-card" href="#node"><div class="card-top"><span class="technology">02 / NODE.JS · NPM</span><span class="status status-progress">En cours</span></div><div class="card-number">40<span>%</span></div><div class="progress-track"><span style="width:40%"></span></div><p>Recensement et conception du standard.</p><span class="card-link">Voir le workflow <b>↗</b></span></a>
+        <a class="program-card" href="#iac"><div class="card-top"><span class="technology">03 / IaC</span><span class="status status-progress">En cours</span></div><div class="card-number">35<span>%</span></div><div class="progress-track"><span style="width:35%"></span></div><p>Analyse et besoins réalisés ; standard en cours.</p><span class="card-link">Voir le workflow <b>↗</b></span></a>
+        <a class="program-card" href="#lambda"><div class="card-top"><span class="technology">04 / LAMBDA</span><span class="status status-progress">En cours</span></div><div class="card-number">20<span>%</span></div><div class="progress-track"><span style="width:20%"></span></div><p>Conception en cours ; priorité PHP.</p><span class="card-link">Voir le workflow <b>↗</b></span></a>
+        <a class="program-card" href="#python"><div class="card-top"><span class="technology">05 / PYTHON</span><span class="status status-todo">À démarrer</span></div><div class="card-number">0<span>%</span></div><div class="progress-track"><span style="width:0%"></span></div><p>Sujet non démarré ; lancement prévu après Lambda.</p><span class="card-link">Voir le workflow <b>↗</b></span></a>
+      </div>
+      <div class="bottom-grid">
+        <div class="panel"><div class="panel-title"><span class="section-index">02</span><h2>Cycle de standardisation</h2></div><div class="mini-flow"><span>Analyse</span><b>→</b><span>Standard</span><b>→</b><span>Implémentation</span><b>→</b><span>POC</span><b>→</b><span>Validation Tech Office</span><b>→</b><span>Documentation</span><b>→</b><span>Industrialisation</span></div></div>
+        <div class="panel"><div class="panel-title"><span class="section-index">03</span><h2>Points de vigilance</h2></div><ul class="compact-list"><li><span class="risk-dot"></span><span><strong>Java</strong> — documentation et modèle MultiRepo à finaliser.</span></li><li><span class="risk-dot"></span><span><strong>Ressources partagées</strong> — dépendances entre chantiers.</span></li><li><span class="risk-dot"></span><span><strong>Lambda / Python</strong> — priorité Lambda susceptible de décaler Python.</span></li></ul></div>
+      </div>
+      <footer><span>PROGRAMME DE STANDARDISATION CI/CD</span><span>Vue de pilotage · Données issues de la demande</span></footer>
+    </section>
+
+    <section class="page detail-page" id="java">
+      <div class="eyebrow">DÉTAIL DU STANDARD · 01</div><div class="detail-heading"><div><h1>Pipeline Standard <span>Java</span></h1><p class="lead">Définir un pipeline Java standard applicable aux projets de l'organisation.</p></div><div class="detail-score"><strong>90%</strong><span class="status status-progress">En cours</span></div></div>
+      <div class="detail-progress"><span style="width:90%"></span></div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Workflow et état des étapes</h2></div><span class="section-note">Statuts repris de la demande</span></div>
+      <div class="workflow">
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Analyse</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Standard</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Implémentation</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Validation POC</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Tech Office</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step progress"><span class="step-symbol">◷</span><span class="step-name">Documentation</span><small>En cours</small></div>
+      </div>
+      <div class="detail-columns"><div class="panel"><h2>Réalisations confirmées</h2><ul class="check-list"><li>Analyse des pipelines existants</li><li>Définition et implémentation du modèle standard</li><li>Validation POC et Tech Office</li><li>Tests en environnement réel et pilote GPS</li></ul></div><div class="panel"><h2>Points ouverts</h2><ul class="open-list"><li><span class="status status-progress">En cours</span><span><strong>Documentation</strong><small>Guides utilisateur, intégration et exploitation.</small></span></li><li><span class="status status-progress">En cours</span><span><strong>MultiRepo</strong><small>Définir le modèle cible pour les projets MultiRepo.</small></span></li><li><span class="status status-progress">En cours</span><span><strong>Trivy</strong><small>Étudier l'intégration de l'outil.</small></span></li></ul></div></div>
+      <div class="note"><strong>À retenir</strong><span>La documentation, MultiRepo et l'étude Trivy restent les principaux sujets ouverts indiqués dans la demande.</span></div>
+      <footer><span>STANDARD JAVA</span><span>Avancement fourni : 90 %</span></footer>
+    </section>
+
+    <section class="page detail-page" id="node">
+      <div class="eyebrow">DÉTAIL DU STANDARD · 02</div><div class="detail-heading"><div><h1>Pipeline Standard <span>Node.js / NPM</span></h1><p class="lead">Définir un standard CI/CD commun pour les applications Node.js.</p></div><div class="detail-score"><strong>40%</strong><span class="status status-progress">En cours</span></div></div><div class="detail-progress"><span style="width:40%"></span></div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Workflow et état des étapes</h2></div></div>
+      <div class="workflow">
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Analyse</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step progress"><span class="step-symbol">◷</span><span class="step-name">Standard</span><small>En cours</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Implémentation</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Validation POC</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Documentation</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Industrialisation</span><small>À démarrer</small></div>
+      </div>
+      <div class="detail-columns"><div class="panel"><h2>Travaux en cours</h2><ul class="check-list"><li>Recensement des pipelines existants</li><li>Construction du schéma cible</li><li>Conception avec les équipes techniques</li></ul></div><div class="panel"><h2>Prochaines étapes du cycle</h2><ul class="open-list"><li><span class="status status-todo">À démarrer</span><span><strong>Implémentation</strong><small>Mettre en œuvre le standard défini.</small></span></li><li><span class="status status-todo">À démarrer</span><span><strong>Validation et documentation</strong><small>Étapes à réaliser selon le cycle décrit.</small></span></li></ul></div></div>
+      <div class="note"><strong>Point de suivi</strong><span>La définition du standard est en cours ; la mise en œuvre et les étapes suivantes ne sont pas encore indiquées comme démarrées.</span></div><footer><span>STANDARD NODE.JS / NPM</span><span>Avancement fourni : 40 %</span></footer>
+    </section>
+
+    <section class="page detail-page" id="iac">
+      <div class="eyebrow">DÉTAIL DU STANDARD · 03</div><div class="detail-heading"><div><h1>Pipeline Standard <span>IaC</span></h1><p class="lead">Formaliser un pipeline standard dédié aux projets Infrastructure as Code.</p></div><div class="detail-score"><strong>35%</strong><span class="status status-progress">En cours</span></div></div><div class="detail-progress"><span style="width:35%"></span></div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Workflow et état des étapes</h2></div></div>
+      <div class="workflow">
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Analyse</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Recueil des besoins</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step progress"><span class="step-symbol">◷</span><span class="step-name">Standard</span><small>En cours</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Implémentation</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Validation POC</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Documentation</span><small>À démarrer</small></div>
+      </div>
+      <div class="detail-columns"><div class="panel"><h2>Périmètre indiqué</h2><div class="tag-list"><span>Terraform</span><span>Ansible</span><span>Modules partagés</span><span>Contrôles qualité</span><span>Contrôles sécurité</span></div><h3>Axes principaux</h3><ul class="check-list"><li>Qualité : lint, formatting, validation</li><li>Sécurité : Trivy, Checkov, tfsec</li><li>Déploiement : préproduction et production</li></ul></div><div class="panel"><h2>Prochaines étapes du cycle</h2><ul class="open-list"><li><span class="status status-progress">En cours</span><span><strong>Définition du standard</strong><small>Consolider le modèle cible.</small></span></li><li><span class="status status-todo">À démarrer</span><span><strong>Implémentation et POC</strong><small>À engager après définition du standard.</small></span></li><li><span class="status status-todo">À démarrer</span><span><strong>Documentation</strong><small>À réaliser selon le cycle prévu.</small></span></li></ul></div></div>
+      <div class="note"><strong>Point de suivi</strong><span>Le standard est en cours de définition ; les étapes d'implémentation, de validation POC et de documentation sont indiquées comme non démarrées.</span></div><footer><span>STANDARD IaC</span><span>Avancement fourni : 35 %</span></footer>
+    </section>
+
+    <section class="page detail-page" id="lambda">
+      <div class="eyebrow">DÉTAIL DU STANDARD · 04</div><div class="detail-heading"><div><h1>Pipeline Standard <span>AWS Lambda</span></h1><p class="lead">Définir un standard de déploiement pour les fonctions AWS Lambda.</p></div><div class="detail-score"><strong>20%</strong><span class="status status-progress">En cours</span></div></div><div class="detail-progress"><span style="width:20%"></span></div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Workflow et état des étapes</h2></div></div>
+      <div class="workflow">
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Analyse</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step done"><span class="step-symbol">✓</span><span class="step-name">Collecte du code</span><small>Terminé</small></div><span class="arrow">→</span>
+        <div class="workflow-step progress"><span class="step-symbol">◷</span><span class="step-name">Conception</span><small>En cours</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Implémentation</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Validation POC</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Documentation</span><small>À démarrer</small></div>
+      </div>
+      <div class="detail-columns"><div class="panel"><h2>Technologies concernées</h2><div class="tag-list"><span>PHP</span><span>Node.js</span><span>Python</span><span>Java — à confirmer</span></div><div class="priority-banner"><span>PRIORITÉ INDIQUÉE</span><strong>Lambda PHP</strong></div></div><div class="panel"><h2>Prochaines étapes du cycle</h2><ul class="open-list"><li><span class="status status-progress">En cours</span><span><strong>Conception du standard</strong><small>Finaliser la conception du modèle.</small></span></li><li><span class="status status-todo">À démarrer</span><span><strong>Implémentation et POC</strong><small>Étapes à engager après la conception.</small></span></li><li><span class="status status-todo">À démarrer</span><span><strong>Documentation</strong><small>À réaliser selon le cycle prévu.</small></span></li></ul></div></div>
+      <div class="note"><strong>Point de suivi</strong><span>La conception est en cours. PHP est indiqué comme priorité ; le périmètre Java reste à confirmer.</span></div><footer><span>STANDARD LAMBDA</span><span>Avancement fourni : 20 %</span></footer>
+    </section>
+
+    <section class="page detail-page" id="python">
+      <div class="eyebrow">DÉTAIL DU STANDARD · 05</div><div class="detail-heading"><div><h1>Pipeline Standard <span>Python</span></h1><p class="lead">Définir le pipeline de référence pour les applications Python.</p></div><div class="detail-score"><strong>0%</strong><span class="status status-todo">À démarrer</span></div></div><div class="detail-progress"><span style="width:0%"></span></div>
+      <div class="section-heading"><div><span class="section-index">01</span><h2>Workflow et état des étapes</h2></div></div>
+      <div class="workflow">
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Analyse</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Standard</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Implémentation</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Validation POC</span><small>À démarrer</small></div><span class="arrow">→</span>
+        <div class="workflow-step todo"><span class="step-symbol">○</span><span class="step-name">Documentation</span><small>À démarrer</small></div>
+      </div>
+      <div class="detail-columns"><div class="panel"><h2>Situation actuelle</h2><div class="large-status"><span class="status status-todo">Sujet non démarré</span><strong>0%</strong></div><p class="muted">La demande indique que le lancement est prévu après avancement des sujets Lambda.</p></div><div class="panel"><h2>Point de suivi</h2><ul class="open-list"><li><span class="status status-todo">À planifier</span><span><strong>Confirmer le démarrage</strong><small>À réexaminer selon l'avancement des sujets Lambda.</small></span></li><li><span class="status status-todo">À planifier</span><span><strong>Engager l'analyse</strong><small>Première étape du cycle lorsque le sujet démarre.</small></span></li></ul></div></div>
+      <div class="note"><strong>Dépendance mentionnée</strong><span>Le lancement Python est prévu après avancement des sujets Lambda ; aucune date n'est précisée dans la demande.</span></div><footer><span>STANDARD PYTHON</span><span>Avancement fourni : 0 %</span></footer>
+    </section>
+  </main>
+</body>
+</html>
