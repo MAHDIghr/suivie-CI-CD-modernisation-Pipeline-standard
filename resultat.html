@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport de suivi – Automatisation des ouvertures de droits (PJTCLOUD-994)</title>
+<style>
+:root{
+  --navy:#0b1f3a; --navy2:#13305a; --blue:#1f6feb; --sky:#e8f1ff;
+  --green:#16a34a; --green-l:#dcfce7; --orange:#f59e0b; --orange-l:#fef3c7;
+  --red:#dc2626; --red-l:#fee2e2; --grey:#64748b; --grey-l:#f1f5f9;
+  --line:#e2e8f0; --text:#0f172a; --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#eef2f7;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{max-width:1180px;margin:0 auto;padding:0 20px 40px}
+h1,h2,h3,h4{margin:0;line-height:1.2}
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(11,31,58,.96);color:#fff;display:flex;gap:14px;align-items:center;justify-content:space-between;padding:10px 24px;flex-wrap:wrap}
+.toolbar nav{display:flex;gap:4px;flex-wrap:wrap;font-size:12.5px}
+.toolbar nav a{color:#cbd5e1;text-decoration:none;padding:4px 8px;border-radius:6px}
+.toolbar nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;font-size:14px}
+.btn:hover{background:#1558c0}
+
+/* cover */
+.cover{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1f6feb 130%);color:#fff;border-radius:0 0 28px 28px;padding:70px 56px 50px;min-height:560px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.07)}
+.cover::before{content:"";position:absolute;right:80px;bottom:-160px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.05)}
+.cover .tag{display:inline-block;background:rgba(255,255,255,.15);padding:6px 14px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.cover h1{font-size:44px;margin:22px 0 14px;max-width:760px}
+.cover .sub{font-size:19px;color:#cfe0ff;max-width:700px}
+.cover .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:46px;position:relative;z-index:1}
+.cover .meta div{border-left:3px solid #6ea8ff;padding-left:12px}
+.cover .meta small{display:block;color:#a9c3ee;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.cover .meta b{font-size:16px}
+
+/* sections */
+section{background:#fff;border-radius:var(--radius);box-shadow:0 2px 10px rgba(15,23,42,.06);padding:30px 34px;margin-top:24px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--sky)}
+.sec-num{background:var(--navy);color:#fff;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:700;flex:none}
+.sec-head h2{font-size:23px;color:var(--navy)}
+p{margin:0 0 10px}
+.lead{font-size:16px;color:#1e293b}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff}
+.card h3{font-size:16px;margin-bottom:8px;color:var(--navy)}
+.note{font-size:12.5px;color:var(--grey);margin-top:10px}
+
+/* badges */
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.b-green{background:var(--green-l);color:#166534}
+.b-orange{background:var(--orange-l);color:#92400e}
+.b-red{background:var(--red-l);color:#991b1b}
+.b-grey{background:var(--grey-l);color:#334155}
+.b-blue{background:var(--sky);color:#1d4ed8}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.d-green{background:var(--green)}.d-orange{background:var(--orange)}.d-red{background:var(--red)}
+
+/* KPI */
+.kpi{border-radius:14px;padding:18px;color:#fff;position:relative;overflow:hidden}
+.kpi .v{font-size:38px;font-weight:800;line-height:1}
+.kpi .l{font-size:13px;opacity:.92;margin-top:6px}
+.kpi small{display:block;opacity:.8;font-size:11.5px;margin-top:4px}
+.k-navy{background:linear-gradient(135deg,#0b1f3a,#1e4a8a)}
+.k-blue{background:linear-gradient(135deg,#1f6feb,#4f9bff)}
+.k-green{background:linear-gradient(135deg,#15803d,#34c46b)}
+.k-orange{background:linear-gradient(135deg,#d97706,#fbbf24)}
+.k-red{background:linear-gradient(135deg,#b91c1c,#ef6a6a)}
+.k-grey{background:linear-gradient(135deg,#475569,#94a3b8)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px;font-weight:600;font-size:13px}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:#f8fafc}
+.tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--line)}
+
+/* progress */
+.prog-row{display:grid;grid-template-columns:minmax(220px,1.1fr) 3fr 60px;gap:14px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
+.prog-row:last-child{border-bottom:0}
+.prog-name b{display:block;font-size:14px}
+.prog-name span{font-size:12px;color:var(--grey)}
+.bar{height:14px;background:var(--grey-l);border-radius:999px;overflow:hidden;position:relative}
+.bar i{display:block;height:100%;width:0;border-radius:999px;transition:width 1.4s cubic-bezier(.2,.8,.2,1);background-image:linear-gradient(90deg,rgba(255,255,255,.0),rgba(255,255,255,.28),rgba(255,255,255,0));background-size:200% 100%;animation:shine 3s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.bar.green i{background-color:var(--green)}.bar.orange i{background-color:var(--orange)}.bar.red i{background-color:var(--red)}
+.pct{font-weight:700;text-align:right}
+
+/* gauge */
+.gauge{text-align:center}
+.gauge svg{width:100%;max-width:260px}
+.gauge .arc{transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}
+.gauge h4{margin-top:-8px;font-size:14px;color:var(--navy)}
+
+/* radar */
+.radar-box{display:grid;grid-template-columns:minmax(300px,1.3fr) 1fr;gap:24px;align-items:center}
+.legend{display:flex;flex-direction:column;gap:8px;font-size:14px}
+.legend label{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.legend .sw{width:14px;height:14px;border-radius:4px;flex:none}
+@media(max-width:820px){.radar-box{grid-template-columns:1fr}.prog-row{grid-template-columns:1fr 50px}.prog-row .bar{grid-column:1/-1;order:3}}
+
+/* timeline gantt */
+.gantt{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.g-head{display:grid;background:var(--navy);color:#fff;font-size:12px;font-weight:600}
+.g-head div{padding:8px 0;text-align:center;border-left:1px solid rgba(255,255,255,.18)}
+.g-row{display:grid;grid-template-columns:230px 1fr;border-top:1px solid var(--line);align-items:center}
+.g-label{padding:8px 12px;font-size:12.5px;line-height:1.3;background:#f8fafc;height:100%;display:flex;flex-direction:column;justify-content:center}
+.g-label b{color:var(--navy)}
+.g-track{position:relative;height:38px;background-image:linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:calc(100%/6) 100%}
+.g-bar{position:absolute;top:9px;height:20px;border-radius:6px;font-size:10.5px;color:#fff;padding:0 8px;line-height:20px;white-space:nowrap;overflow:hidden}
+.g-bar.cond{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 6px,transparent 6px 12px)!important}
+.today{position:absolute;top:0;bottom:0;width:2px;background:var(--red);z-index:3}
+.today span{position:absolute;top:2px;left:4px;background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:4px}
+.g-top{display:grid;grid-template-columns:230px 1fr}
+.g-top > div:first-child{background:var(--navy);color:#fff;padding:8px 12px;font-size:12px;font-weight:600}
+
+/* dependency */
+.dep svg{width:100%;height:auto}
+.dep text{font-family:inherit}
+
+/* risk matrix */
+.rm{display:grid;grid-template-columns:34px repeat(5,1fr);grid-template-rows:repeat(5,64px) 30px;gap:3px;max-width:560px}
+.rm .cell{border-radius:6px;display:flex;flex-wrap:wrap;gap:3px;align-items:center;justify-content:center;padding:3px}
+.rm .ax{font-size:11px;color:var(--grey);display:grid;place-items:center}
+.rb{background:#fff;color:var(--navy);font-weight:700;font-size:11px;border-radius:999px;padding:2px 7px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.c-g{background:#bbf7d0}.c-o{background:#fde68a}.c-r{background:#fca5a5}
+.rm-wrap{display:grid;grid-template-columns:minmax(300px,560px) 1fr;gap:26px;align-items:start}
+@media(max-width:900px){.rm-wrap{grid-template-columns:1fr}}
+
+/* opp matrix */
+.om{position:relative;height:380px;border:1px solid var(--line);border-radius:12px;background:
+ linear-gradient(#dcfce7,#dcfce7) 0 0/50% 50% no-repeat,
+ linear-gradient(#dbeafe,#dbeafe) 100% 0/50% 50% no-repeat,
+ linear-gradient(#f1f5f9,#f1f5f9) 0 100%/50% 50% no-repeat,
+ linear-gradient(#fef3c7,#fef3c7) 100% 100%/50% 50% no-repeat}
+.om .q{position:absolute;font-size:11.5px;font-weight:700;color:#334155;opacity:.8;padding:6px 10px}
+.om .pt{position:absolute;transform:translate(-50%,50%);background:var(--navy);color:#fff;border-radius:999px;padding:4px 11px;font-size:12px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.25);white-space:nowrap}
+.om .ylab,.om .xlab{position:absolute;font-size:11px;color:var(--grey)}
+.om .ylab{left:-4px;top:50%;transform:rotate(-90deg) translateX(50%);transform-origin:left top;margin-left:-6px}
+.om .xlab{bottom:-22px;left:50%;transform:translateX(-50%)}
+
+/* lists */
+ul.chk{list-style:none;padding:0;margin:0}
+ul.chk li{padding:7px 0 7px 28px;position:relative;border-bottom:1px dashed var(--line);font-size:14.5px}
+ul.chk li:last-child{border:0}
+ul.chk li::before{content:"";position:absolute;left:0;top:11px;width:16px;height:16px;border-radius:50%;background:var(--green)}
+ul.chk.o li::before{background:var(--orange)}
+ul.chk.r li::before{background:var(--red)}
+ul.chk.b li::before{background:var(--blue)}
+.callout{border-left:5px solid var(--blue);background:var(--sky);padding:14px 18px;border-radius:0 10px 10px 0;margin:14px 0}
+.callout.warn{border-color:var(--orange);background:var(--orange-l)}
+.callout.crit{border-color:var(--red);background:var(--red-l)}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;margin:6px 0}
+.chain span.n{background:var(--navy);color:#fff;padding:5px 11px;border-radius:8px;font-weight:600}
+.chain span.a{color:var(--grey);font-weight:700}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;padding:10px 0 10px 48px;position:relative;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+footer{text-align:center;color:var(--grey);font-size:12px;margin-top:26px}
+
+@media print{
+  @page{size:A4;margin:11mm}
+  body{background:#fff;font-size:11.5px}
+  .toolbar{display:none}
+  .page{max-width:none;padding:0}
+  .cover{border-radius:0;min-height:255mm;page-break-after:always}
+  section{box-shadow:none;border:1px solid var(--line);padding:16px 18px;margin-top:12px;break-inside:avoid-page;page-break-inside:avoid}
+  section.allow-break{break-inside:auto;page-break-inside:auto}
+  .card,.kpi,tr,.g-row,.prog-row{break-inside:avoid}
+  .bar i{animation:none;transition:none}
+  .gauge .arc{transition:none}
+  .pb{page-break-before:always}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <strong>PJTCLOUD-994 · Rapport de suivi</strong>
+  <nav>
+    <a href="#resume">Résumé</a><a href="#vue">Vue globale</a><a href="#frise">Frise</a><a href="#kpi">KPI</a>
+    <a href="#radar">Radar</a><a href="#deps">Dépendances</a><a href="#risques">Risques</a><a href="#opps">Opportunités</a>
+    <a href="#blocages">Blocages</a><a href="#planning">Planning</a><a href="#actions">Actions</a><a href="#conclusion">Conclusion</a>
+  </nav>
+  <button class="btn" onclick="window.print()">Exporter en PDF</button>
+</div>
+
+<div class="page">
+
+<!-- 1. COUVERTURE -->
+<header class="cover">
+  <div style="position:relative;z-index:1">
+    <span class="tag">Rapport de suivi · Comité projet</span>
+    <h1>Automatisation des ouvertures de droits</h1>
+    <div class="sub">ServiceNow · Jenkins · AWS · Bitbucket · Active Directory · Listes de diffusion</div>
+  </div>
+  <div class="meta">
+    <div><small>Ticket principal</small><b>PJTCLOUD-994</b></div>
+    <div><small>Sous-tâches suivies</small><b>PJTCLOUD-995 à 1002 (8)</b></div>
+    <div><small>Période couverte</small><b>26 – 28 octobre 2026</b></div>
+    <div><small>Date du rapport</small><b>28/10/2026</b></div>
+  </div>
+</header>
+
+<!-- 2. RESUME EXECUTIF -->
+<section id="resume">
+  <div class="sec-head"><div class="sec-num">2</div><h2>Résumé exécutif</h2></div>
+  <p class="lead">Le projet cible un processus de bout en bout : un utilisateur remplit un formulaire ServiceNow, la demande est validée, Jenkins ouvre automatiquement les droits sur les systèmes cibles, puis renvoie le statut à ServiceNow qui clôture la demande.</p>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><h3><span class="dot d-green"></span>Ce qui avance bien</h3>
+      <p>Le POC AWS est très avancé, le POC Bitbucket est en cours avec une livraison prévue la semaine du 02/11, et le périmètre AWS a été recentré sur l'attribution et le retrait de droits.</p></div>
+    <div class="card"><h3><span class="dot d-orange"></span>Ce qui est sous contrainte</h3>
+      <p>Le formulaire ServiceNow dépend d'un référentiel d'équipes non identifié, d'une licence de validation manager et d'un devis TMA. Le job Jenkins attend un retour le 02/11.</p></div>
+    <div class="card"><h3><span class="dot d-red"></span>Point d'attention majeur</h3>
+      <p>Le POC AD Manager ne peut pas démarrer sans accès API. Aucun engagement officiel : accès espéré fin d'année ou début 2027. Le POC listes de diffusion pourrait en subir l'impact.</p></div>
+  </div>
+  <div class="callout"><b>Message clé :</b> la majorité des travaux peut avancer en parallèle dès maintenant. Le chemin critique du projet passe par l'accès API AD Manager, une décision externe à obtenir sans attendre.</div>
+</section>
+
+<!-- 3. VUE GLOBALE -->
+<section id="vue">
+  <div class="sec-head"><div class="sec-num">3</div><h2>Vue globale du projet</h2></div>
+  <p>Processus cible automatisé :</p>
+  <div class="chain">
+    <span class="n">Utilisateur</span><span class="a">→</span><span class="n">Formulaire ServiceNow</span><span class="a">→</span><span class="n">Validation</span><span class="a">→</span><span class="n">Jenkins</span><span class="a">→</span><span class="n">Ouverture automatique des droits</span><span class="a">→</span><span class="n">Retour de statut vers ServiceNow</span><span class="a">→</span><span class="n">Clôture automatique</span>
+  </div>
+  <div class="tbl-wrap" style="margin-top:16px"><table>
+    <thead><tr><th>Ticket</th><th>Sous-tâche</th><th>Responsable</th><th>Statut</th><th>Santé</th></tr></thead>
+    <tbody id="tbl-overview"></tbody>
+  </table></div>
+  <h3 style="margin:22px 0 10px;font-size:16px;color:var(--navy)">Travaux réalisés sur la période</h3>
+  <div class="grid g3">
+    <div class="card"><span class="badge b-blue">26/10/2026</span><h3 style="margin-top:8px">Réunion Jenkins</h3><p style="font-size:13.5px">Souhail Elmalih, Emna Hannachi, Alexandre Bouet.<br>Suivi de la partie Jenkins et architecture d'automatisation.</p></div>
+    <div class="card"><span class="badge b-blue">27/10/2026</span><h3 style="margin-top:8px">Réunion ServiceNow</h3><p style="font-size:13.5px">Dany Garnier, Emna Hannachi.<br>Analyse du formulaire SNOW et intégration avec Jenkins.</p></div>
+    <div class="card"><span class="badge b-blue">26/10/2026</span><h3 style="margin-top:8px">Point AD Manager</h3><p style="font-size:13.5px">Johan Fontange.<br>Étude de l'accès API AD Manager.</p></div>
+  </div>
+</section>
+
+<!-- 4. FRISE -->
+<section id="frise" class="allow-break">
+  <div class="sec-head"><div class="sec-num">4</div><h2>Frise chronologique du projet</h2></div>
+  <p>Les barres hachurées indiquent des périodes conditionnées par une décision ou un accès externe. Les dates marquées « est. » sont des estimations d'analyse, hors engagement des équipes.</p>
+  <div id="gantt"></div>
+  <p class="note">Seules les dates du 02/11 (livraison Bitbucket et retour de Cyrille Ticier) et les réunions des 26 et 27/10 proviennent de la demande. Les autres bornes sont estimées.</p>
+</section>
+
+<!-- 5. KPI -->
+<section id="kpi">
+  <div class="sec-head"><div class="sec-num">5</div><h2>Tableau de bord KPI</h2></div>
+  <div class="grid g5" id="kpis"></div>
+  <div class="grid g3" style="margin-top:20px;align-items:center">
+    <div class="gauge" id="gauge1"></div>
+    <div class="gauge" id="gauge2"></div>
+    <div class="card"><h3>Répartition par statut</h3><div id="donut" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"></div></div>
+  </div>
+  <p class="note">Le taux d'avancement par sous-tâche est une estimation d'analyse à partir des commentaires de suivi ; le taux global est la moyenne simple des huit sous-tâches. Aucune sous-tâche n'est formellement « bloquée » : la colonne « en attente » regroupe PJTCLOUD-997. Trois sous-tâches (995, 999, 1000) restent sous contrainte externe.</p>
+</section>
+
+<!-- 6. PROGRESS BARS -->
+<section id="progress">
+  <div class="sec-head"><div class="sec-num">6</div><h2>Avancement par sous-tâche</h2></div>
+  <div id="bars"></div>
+</section>
+
+<!-- 7. RADAR -->
+<section id="radar">
+  <div class="sec-head"><div class="sec-num">7</div><h2>Radar : maturité, dépendances, risque, complexité, avancement</h2></div>
+  <div class="radar-box">
+    <div id="radarSvg"></div>
+    <div>
+      <div class="legend" id="radarLegend"></div>
+      <p class="note">Échelle de 0 à 10, évaluation qualitative de l'analyste. Pour « dépendances », « risque » et « complexité », une valeur élevée est défavorable. Cliquez sur la légende pour masquer ou afficher une série.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. DEPENDANCES -->
+<section id="deps">
+  <div class="sec-head"><div class="sec-num">8</div><h2>Diagramme de dépendances</h2></div>
+  <div class="dep" id="depSvg"></div>
+  <p class="note">Couleur des cibles : vert = POC avancé, orange = en cours ou conditionné, rouge = dépendance externe bloquante. Le trait en pointillés représente le retour de statut vers ServiceNow (étude de faisabilité et devis TMA en cours).</p>
+</section>
+
+<!-- 9. RISQUES -->
+<section id="risques">
+  <div class="sec-head"><div class="sec-num">9</div><h2>Matrice des risques</h2></div>
+  <div class="rm-wrap">
+    <div id="riskMatrix"></div>
+    <div id="riskList"></div>
+  </div>
+</section>
+
+<!-- 10. OPPORTUNITES -->
+<section id="opps">
+  <div class="sec-head"><div class="sec-num">10</div><h2>Matrice Opportunités / Gains</h2></div>
+  <div class="rm-wrap" style="grid-template-columns:minmax(300px,1.3fr) 1fr">
+    <div style="padding-bottom:26px"><div class="om" id="oppMatrix"></div></div>
+    <div id="oppList"></div>
+  </div>
+</section>
+
+<!-- 11. BLOCAGES -->
+<section id="blocages" class="allow-break">
+  <div class="sec-head"><div class="sec-num">11</div><h2>Analyse détaillée des blocages</h2></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Blocage</th><th>Sous-tâches touchées</th><th>Nature</th><th>Sévérité</th><th>Levier de déblocage</th></tr></thead>
+    <tbody>
+      <tr><td><b>Pas d'accès API AD Manager</b><br>Aucun accès disponible, aucun engagement officiel de l'équipe AD.</td><td>999, 1000 (si dépendance AD), 997</td><td>Décision externe</td><td><span class="badge b-red">Critique</span></td><td>Escalader auprès de l'équipe AD pour obtenir une date ferme ; cadrer en parallèle l'étude exposition API, authentification, délégation et sécurité.</td></tr>
+      <tr><td><b>Licence Business Stakeholder absente</b><br>Validation manager par mail impossible.</td><td>995</td><td>Licence / budget</td><td><span class="badge b-orange">Élevée</span></td><td>Obtenir l'estimation de coût, puis décision d'achat ; étudier un mode de validation alternatif en attendant.</td></tr>
+      <tr><td><b>Référentiel des équipes non identifié</b><br>Responsable, owners, membres, projets Bitbucket, groupes AD et AWS à recenser.</td><td>995, 996</td><td>Organisationnel</td><td><span class="badge b-orange">Élevée</span></td><td>Désigner un responsable du référentiel et une équipe de référence pour les premiers tests.</td></tr>
+      <tr><td><b>Devis TMA en attente</b><br>Appel API Jenkins, fermeture automatique du RITM, SCTASK AWS.</td><td>995, 997</td><td>Contractuel</td><td><span class="badge b-orange">Moyenne</span></td><td>Relancer le devis ; confirmer la faisabilité technique ServiceNow avant engagement.</td></tr>
+      <tr><td><b>Retour de Cyrille Ticier attendu le 02/11</b><br>Retour de congés.</td><td>997</td><td>Disponibilité</td><td><span class="badge b-grey">Faible</span></td><td>Préparer le dossier (documentation technico-fonctionnelle déjà rédigée) pour un démarrage immédiat.</td></tr>
+      <tr><td><b>Table compatible ServiceNow non trouvée</b></td><td>996</td><td>Technique</td><td><span class="badge b-orange">Moyenne</span></td><td>Poursuivre la recherche avec l'équipe SNOW ; valider le modèle de données sur une équipe pilote.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 12. IMPACT -->
+<section id="impact">
+  <div class="sec-head"><div class="sec-num">12</div><h2>Analyse d'impact</h2></div>
+  <div class="grid g2">
+    <div class="card"><h3>Si l'accès AD Manager arrive début 2027</h3>
+      <ul class="chk r"><li>Le POC AD (999) démarre au plus tôt en janvier 2027.</li><li>Le POC listes de diffusion (1000) glisse s'il est adossé à des groupes AD.</li><li>La couverture complète des systèmes cibles n'est pas atteignable avant le premier trimestre 2027.</li></ul></div>
+    <div class="card"><h3>Si la licence ServiceNow n'est pas obtenue</h3>
+      <ul class="chk o"><li>La validation manager par mail reste impossible.</li><li>Le formulaire (995) ne peut pas être livré dans sa version cible.</li><li>Un contournement du circuit de validation doit être arbitré avec le métier.</li></ul></div>
+    <div class="card"><h3>Si le référentiel d'équipes reste non identifié</h3>
+      <ul class="chk o"><li>Pas d'équipe pilote, donc pas de tests de bout en bout.</li><li>Les paramètres du job Jenkins (997) ne peuvent pas être figés.</li><li>La table de stockage (996) reste théorique.</li></ul></div>
+    <div class="card"><h3>Effet de la révision du périmètre AWS (1002)</h3>
+      <ul class="chk"><li>Retrait de la création et suppression de comptes, des mots de passe et des access keys.</li><li>Le périmètre se concentre sur l'attribution, le retrait de droits et la remontée vers ServiceNow.</li><li>Réduction de la complexité et du risque sécurité sur la partie AWS.</li></ul></div>
+  </div>
+</section>
+
+<!-- 13. DEPENDANCES CRITIQUES -->
+<section id="critiques">
+  <div class="sec-head"><div class="sec-num">13</div><h2>Dépendances critiques</h2></div>
+  <div class="card" style="margin-bottom:12px"><h3>Chaîne critique n°1 : Active Directory (chemin critique du projet)</h3>
+    <div class="chain"><span class="n">Décision équipe AD</span><span class="a">→</span><span class="n">Accès API AD Manager</span><span class="a">→</span><span class="n">POC AD (999)</span><span class="a">→</span><span class="n">POC listes de diffusion (1000)*</span><span class="a">→</span><span class="n">Intégration Jenkins finale</span></div>
+    <p class="note">* si les listes de diffusion sont adossées à des groupes AD ; à clarifier.</p></div>
+  <div class="card" style="margin-bottom:12px"><h3>Chaîne critique n°2 : ServiceNow</h3>
+    <div class="chain"><span class="n">Référentiel d'équipes</span><span class="a">→</span><span class="n">Table SNOW (996)</span><span class="a">→</span><span class="n">Formulaire (995)</span><span class="a">→</span><span class="n">Licence + devis TMA</span><span class="a">→</span><span class="n">Retour Jenkins et clôture auto</span></div></div>
+  <div class="card"><h3>Chaîne n°3 : Jenkins (non bloquante)</h3>
+    <div class="chain"><span class="n">Retour Cyrille (02/11)</span><span class="a">→</span><span class="n">Job Jenkins (997)</span><span class="a">→</span><span class="n">Branchement des POC Bitbucket et AWS</span></div></div>
+</section>
+
+<!-- 14. PLANNING -->
+<section id="planning" class="allow-break">
+  <div class="sec-head"><div class="sec-num">14</div><h2>Évaluation réaliste du planning</h2></div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Jalon</th><th>Échéance visée</th><th>Confiance</th><th>Commentaire</th></tr></thead>
+    <tbody>
+      <tr><td>POC Bitbucket (998)</td><td>Semaine du 02/11/2026</td><td><span class="badge b-green">Haute</span></td><td>Besoin compris, aucun blocage, date annoncée par l'équipe.</td></tr>
+      <tr><td>POC AWS (1001)</td><td>Mi-novembre 2026 (est.)</td><td><span class="badge b-green">Haute</span></td><td>Mécanismes principaux déjà implémentés.</td></tr>
+      <tr><td>Cadrage périmètre AWS (1002)</td><td>Mi-novembre 2026 (est.)</td><td><span class="badge b-green">Haute</span></td><td>Analyse en cours, périmètre déjà réduit.</td></tr>
+      <tr><td>Job Jenkins (997)</td><td>Fin novembre à décembre 2026 (est.)</td><td><span class="badge b-orange">Moyenne</span></td><td>Redémarre après le 02/11 ; dépend aussi des paramètres et de l'API AD Manager.</td></tr>
+      <tr><td>Table de stockage (996)</td><td>Fin novembre 2026 (est.)</td><td><span class="badge b-orange">Moyenne</span></td><td>Table ServiceNow compatible et équipe de référence à obtenir.</td></tr>
+      <tr><td>Formulaire SNOW (995)</td><td>Décembre 2026 à janvier 2027 (est.)</td><td><span class="badge b-orange">Moyenne à faible</span></td><td>Licence, devis TMA, référentiel et pilote métier à lever.</td></tr>
+      <tr><td>POC AD Manager (999)</td><td>Premier trimestre 2027 (est.)</td><td><span class="badge b-red">Faible</span></td><td>Accès API non confirmé ; aucune date officielle.</td></tr>
+      <tr><td>POC listes de diffusion (1000)</td><td>Premier trimestre 2027 (est.)</td><td><span class="badge b-red">Faible</span></td><td>Dépend des POC Bitbucket et AD et de la clarification AD.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn" style="margin-top:14px"><b>Lecture réaliste :</b> deux des quatre systèmes cibles (Bitbucket, AWS) peuvent être démontrés d'ici la fin de l'année. Le projet complet, avec AD et listes de diffusion, relève plutôt du premier trimestre 2027, tant qu'aucune date d'accès API n'est confirmée.</div>
+</section>
+
+<!-- 15-17 -->
+<section id="actions">
+  <div class="sec-head"><div class="sec-num">15</div><h2>Ce qui peut avancer immédiatement</h2></div>
+  <ul class="chk">
+    <li>Le développement du job Jenkins (997) peut avancer en parallèle : la documentation technico-fonctionnelle est déjà rédigée.</li>
+    <li>Le POC Bitbucket (998) est quasiment prêt, livraison prévue la semaine du 02/11.</li>
+    <li>Le POC AWS (1001) est très avancé et peut être finalisé.</li>
+    <li>Le travail ServiceNow (995, 996) peut continuer malgré certains blocages : recensement des équipes, owners, membres, projets Bitbucket, groupes AD et AWS.</li>
+    <li>L'analyse du périmètre AWS (1002) se poursuit sans blocage.</li>
+    <li>Plusieurs sous-tâches peuvent être menées simultanément, car elles mobilisent des personnes différentes.</li>
+  </ul>
+</section>
+
+<section id="externes">
+  <div class="sec-head"><div class="sec-num">16</div><h2>Ce qui dépend d'une décision externe</h2></div>
+  <ul class="chk o">
+    <li><b>Accès API AD Manager</b> : décision de l'équipe AD, sans engagement officiel à ce jour.</li>
+    <li><b>Licence Business Stakeholder</b> : estimation de coût en attente, décision d'achat à prendre.</li>
+    <li><b>Devis TMA</b> : appel API Jenkins, fermeture automatique du RITM, gestion des SCTASK AWS.</li>
+    <li><b>Responsable du référentiel des équipes</b> : à identifier.</li>
+    <li><b>Pilote métier</b> : à désigner pour lancer les tests.</li>
+    <li><b>Nature des listes de diffusion</b> : indépendantes ou adossées à des groupes AD, à clarifier.</li>
+  </ul>
+</section>
+
+<section id="risques-planning">
+  <div class="sec-head"><div class="sec-num">17</div><h2>Risques pour le planning</h2></div>
+  <ul class="chk r">
+    <li>Dépendance forte à l'accès API AD Manager : risque de décalage du POC AD.</li>
+    <li>Impact potentiel sur le POC listes de diffusion si elles reposent sur AD.</li>
+    <li>Incertitude autour des licences ServiceNow et du coût associé.</li>
+    <li>Référentiel des équipes encore non identifié, donc pas de pilote de test.</li>
+    <li>Dépendances organisationnelles : disponibilité des équipes, devis TMA, congés.</li>
+  </ul>
+</section>
+
+<!-- 18. RECOMMANDATIONS -->
+<section id="reco">
+  <div class="sec-head"><div class="sec-num">18</div><h2>Recommandations</h2></div>
+  <div class="grid g2">
+    <div class="card"><h3>1. Escalader l'accès API AD Manager</h3><p>Demander à l'équipe AD une date ferme et un engagement écrit. Préparer dès maintenant le dossier d'exposition API, authentification, délégation et sécurité.</p></div>
+    <div class="card"><h3>2. Paralléliser les travaux disponibles</h3><p>Lancer le job Jenkins dès le retour de Cyrille Ticier, finaliser les POC Bitbucket et AWS, poursuivre le formulaire SNOW.</p></div>
+    <div class="card"><h3>3. Trancher le sujet licence et TMA</h3><p>Obtenir l'estimation de coût, décider de l'achat et valider le devis TMA, ou définir un circuit de validation de substitution.</p></div>
+    <div class="card"><h3>4. Désigner référentiel et pilote métier</h3><p>Nommer le responsable du référentiel des équipes et une équipe de référence pour les tests de bout en bout.</p></div>
+    <div class="card"><h3>5. Clarifier le lien listes de diffusion / AD</h3><p>Trancher rapidement : si les listes sont indépendantes, le POC 1000 n'est plus suspendu à l'API AD Manager.</p></div>
+    <div class="card"><h3>6. Livrer par étapes</h3><p>Démontrer un premier flux de bout en bout sur Bitbucket et AWS, puis intégrer AD et listes de diffusion à l'arrivée de l'accès.</p></div>
+  </div>
+</section>
+
+<!-- 19. PROCHAINES ETAPES -->
+<section id="next">
+  <div class="sec-head"><div class="sec-num">19</div><h2>Prochaines étapes</h2></div>
+  <ol class="steps">
+    <li><b>Semaine du 02/11 :</b> livraison du POC Bitbucket ; retour de Cyrille Ticier et redémarrage du job Jenkins (997).</li>
+    <li><b>Dès maintenant :</b> relance de l'équipe AD pour une date d'accès API AD Manager, via Johan Fontange.</li>
+    <li><b>Dès maintenant :</b> obtention de l'estimation de coût de la licence et du devis TMA.</li>
+    <li><b>Novembre :</b> identification du responsable du référentiel, recensement des équipes, owners, membres et groupes, choix du pilote métier.</li>
+    <li><b>Novembre :</b> finalisation du POC AWS et validation du périmètre révisé (1002).</li>
+    <li><b>Novembre :</b> clarification du lien entre listes de diffusion et groupes AD.</li>
+    <li><b>Prochain comité :</b> point de décision sur licence, TMA et calendrier AD.</li>
+  </ol>
+</section>
+
+<!-- 20. CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-head"><div class="sec-num">20</div><h2>Conclusion exécutive</h2></div>
+  <p class="lead">Le projet progresse sur un socle technique solide : AWS et Bitbucket sont proches d'un POC fonctionnel, le périmètre AWS a été simplifié, et le job Jenkins peut démarrer en parallèle dès le 02/11.</p>
+  <p class="lead">Le risque principal est externe : sans accès API AD Manager, le POC AD ne peut pas démarrer et la fin du projet se décale vers le premier trimestre 2027. S'y ajoutent des sujets de décision côté ServiceNow : licence, devis TMA, référentiel d'équipes et pilote métier.</p>
+  <div class="callout crit"><b>Décisions demandées au management :</b> (1) appuyer l'obtention d'une date ferme pour l'accès API AD Manager, (2) arbitrer la licence ServiceNow et le devis TMA, (3) nommer le responsable du référentiel des équipes et un pilote métier.</div>
+</section>
+
+<footer>Rapport généré le 28/10/2026 · PJTCLOUD-994 · Automatisation des ouvertures de droits · Document interne</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- DONNÉES ---------- */
+var tasks=[
+ {id:"PJTCLOUD-995",name:"Formulaire SNOW d'ajout de droit",owner:"Équipe ServiceNow",status:"En cours",cat:"cours",p:35,h:"orange",note:"Besoin revu, dépendances identifiées, licence et référentiel à lever"},
+ {id:"PJTCLOUD-996",name:"Informations à stocker (paramètres)",owner:"Équipe ServiceNow",status:"En cours",cat:"cours",p:25,h:"orange",note:"Recherche d'une table compatible ServiceNow"},
+ {id:"PJTCLOUD-997",name:"Création du job Jenkins",owner:"Cyrille Ticier",status:"En attente",cat:"attente",p:15,h:"orange",note:"Documentation faite, retour attendu après le 02/11"},
+ {id:"PJTCLOUD-998",name:"POC Bitbucket",owner:"Souhail Elmalih",status:"En cours",cat:"cours",p:70,h:"green",note:"Livraison prévue semaine du 02/11"},
+ {id:"PJTCLOUD-999",name:"POC AD Manager",owner:"Souhail Elmalih",status:"Planifié",cat:"plan",p:5,h:"red",note:"Démarrage conditionné à l'accès API AD Manager"},
+ {id:"PJTCLOUD-1000",name:"POC Liste de diffusion",owner:"Souhail Elmalih",status:"Planifié",cat:"plan",p:0,h:"orange",note:"Après POC Bitbucket et AD ; lien avec AD à clarifier"},
+ {id:"PJTCLOUD-1001",name:"POC AWS",owner:"Emna Hannachi",status:"En cours",cat:"cours",p:80,h:"green",note:"Mécanismes principaux implémentés"},
+ {id:"PJTCLOUD-1002",name:"Gestion équipe/groupe AWS",owner:"Alexandre Bouet",status:"En analyse",cat:"cours",p:20,h:"green",note:"Périmètre révisé, aucun blocage"}
+];
+var HC={green:"#16a34a",orange:"#f59e0b",red:"#dc2626"};
+var HL={green:["b-green","Vert"],orange:["b-orange","Orange"],red:["b-red","Rouge"]};
+var SB={"En cours":"b-blue","En analyse":"b-blue","En attente":"b-orange","Planifié":"b-grey"};
+
+var n=tasks.length;
+var cCours=tasks.filter(function(t){return t.cat==="cours"}).length;
+var cPlan=tasks.filter(function(t){return t.cat==="plan"}).length;
+var cAtt=tasks.filter(function(t){return t.cat==="attente"}).length;
+var global=Math.round(tasks.reduce(function(a,t){return a+t.p},0)/n);
+var pocs=tasks.filter(function(t){return ["PJTCLOUD-998","PJTCLOUD-999","PJTCLOUD-1000","PJTCLOUD-1001"].indexOf(t.id)>-1});
+var pocAvg=Math.round(pocs.reduce(function(a,t){return a+t.p},0)/pocs.length);
+
+function $(id){return document.getElementById(id)}
+function el(tag,attrs,html){var e=document.createElement(tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(html!==undefined)e.innerHTML=html;return e}
+
+/* ---------- TABLEAU VUE GLOBALE ---------- */
+$("tbl-overview").innerHTML=tasks.map(function(t){
+  return "<tr><td><b>"+t.id+"</b></td><td>"+t.name+"<br><span style='font-size:12px;color:#64748b'>"+t.note+"</span></td><td>"+t.owner+"</td><td><span class='badge "+SB[t.status]+"'>"+t.status+"</span></td><td><span class='badge "+HL[t.h][0]+"'>"+HL[t.h][1]+"</span></td></tr>";
+}).join("");
+
+/* ---------- KPI ---------- */
+var kp=[
+ ["k-navy",n,"Sous-tâches au total","PJTCLOUD-995 à 1002"],
+ ["k-blue",cCours,"En cours / analyse","995, 996, 998, 1001, 1002"],
+ ["k-grey",cPlan,"Planifiées","999, 1000"],
+ ["k-red",cAtt,"En attente / bloquées","997 ; 0 blocage formel"],
+ ["k-green",global+"%","Avancement global","moyenne des 8 sous-tâches"]
+];
+$("kpis").innerHTML=kp.map(function(k){return "<div class='kpi "+k[0]+"'><div class='v'>"+k[1]+"</div><div class='l'>"+k[2]+"</div><small>"+k[3]+"</small></div>"}).join("");
+
+/* ---------- JAUGES ---------- */
+function gauge(target,value,label,color){
+  var R=80,C=Math.PI*R;
+  target.innerHTML="<svg viewBox='0 0 200 125'><path d='M20 105 A80 80 0 0 1 180 105' fill='none' stroke='#e2e8f0' stroke-width='18' stroke-linecap='round'/>"+
+  "<path class='arc' d='M20 105 A80 80 0 0 1 180 105' fill='none' stroke='"+color+"' stroke-width='18' stroke-linecap='round' stroke-dasharray='"+C+"' stroke-dashoffset='"+C+"' data-target='"+(C*(1-value/100))+"'/>"+
+  "<text x='100' y='96' text-anchor='middle' font-size='34' font-weight='800' fill='#0b1f3a'>"+value+"%</text>"+
+  "<text x='20' y='122' font-size='10' fill='#64748b' text-anchor='middle'>0</text><text x='180' y='122' font-size='10' fill='#64748b' text-anchor='middle'>100</text></svg><h4>"+label+"</h4>";
+}
+gauge($("gauge1"),global,"Avancement global du projet",global>=60?HC.green:global>=30?HC.orange:HC.red);
+gauge($("gauge2"),pocAvg,"Avancement des 4 POC (998 à 1001)",pocAvg>=60?HC.green:pocAvg>=30?HC.orange:HC.red);
+
+/* ---------- DONUT ---------- */
+(function(){
+  var data=[["En cours / analyse",cCours,"#1f6feb"],["Planifiées",cPlan,"#94a3b8"],["En attente",cAtt,"#f59e0b"]];
+  var R=50,C=2*Math.PI*R,off=0,s="<svg viewBox='0 0 140 140' width='130'><g transform='rotate(-90 70 70)'>";
+  data.forEach(function(d){var l=C*d[1]/n;s+="<circle cx='70' cy='70' r='"+R+"' fill='none' stroke='"+d[2]+"' stroke-width='22' stroke-dasharray='"+l+" "+(C-l)+"' stroke-dashoffset='"+(-off)+"'/>";off+=l});
+  s+="</g><text x='70' y='76' text-anchor='middle' font-size='26' font-weight='800' fill='#0b1f3a'>"+n+"</text></svg><div style='font-size:13px'>";
+  data.forEach(function(d){s+="<div><span class='dot' style='background:"+d[2]+"'></span>"+d[0]+" : <b>"+d[1]+"</b></div>"});
+  $("donut").innerHTML=s+"</div>";
+})();
+
+/* ---------- PROGRESS BARS ---------- */
+$("bars").innerHTML=tasks.map(function(t){
+  return "<div class='prog-row'><div class='prog-name'><b>"+t.id+" · "+t.name+"</b><span>"+t.owner+" · "+t.status+"</span></div>"+
+  "<div class='bar "+t.h+"'><i data-w='"+t.p+"'></i></div><div class='pct'>"+t.p+"%</div></div>";
+}).join("");
+
+/* ---------- RADAR ---------- */
+var axes=["Maturité technique","Dépendances","Risque","Complexité","Avancement"];
+var series=[
+ {n:"ServiceNow",c:"#1f6feb",v:[4,8,7,7,3.5]},
+ {n:"Jenkins",c:"#7c3aed",v:[5,6,4,6,1.5]},
+ {n:"Bitbucket",c:"#16a34a",v:[7,3,2,4,7]},
+ {n:"AWS",c:"#f59e0b",v:[8,3,3,6,8]},
+ {n:"AD Manager",c:"#dc2626",v:[3,9,9,6,0.5]},
+ {n:"Listes de diffusion",c:"#0891b2",v:[2,8,6,4,0]}
+];
+(function(){
+  var cx=210,cy=205,R=150,N=axes.length;
+  function pt(i,v){var a=-Math.PI/2+i*2*Math.PI/N;return [cx+R*(v/10)*Math.cos(a),cy+R*(v/10)*Math.sin(a)]}
+  var s="<svg viewBox='0 0 420 410' style='width:100%;max-width:520px'>";
+  for(var l=1;l<=5;l++){var pts=[];for(var i=0;i<N;i++)pts.push(pt(i,l*2).join(","));s+="<polygon points='"+pts.join(" ")+"' fill='"+(l%2?"#f8fafc":"#fff")+"' stroke='#cbd5e1' stroke-width='1'/>"}
+  for(var j=0;j<N;j++){var e=pt(j,10),t=pt(j,11.8);s+="<line x1='"+cx+"' y1='"+cy+"' x2='"+e[0]+"' y2='"+e[1]+"' stroke='#cbd5e1'/><text x='"+t[0]+"' y='"+(t[1]+4)+"' text-anchor='middle' font-size='12.5' font-weight='600' fill='#0b1f3a'>"+axes[j]+"</text>"}
+  for(var k=2;k<=10;k+=2){s+="<text x='"+(cx+3)+"' y='"+(cy-R*k/10+3)+"' font-size='9' fill='#94a3b8'>"+k+"</text>"}
+  series.forEach(function(se,idx){
+    var pts=se.v.map(function(v,i){return pt(i,v).join(",")}).join(" ");
+    s+="<g class='rs' data-i='"+idx+"'><polygon points='"+pts+"' fill='"+se.c+"' fill-opacity='.12' stroke='"+se.c+"' stroke-width='2.2'/>";
+    se.v.forEach(function(v,i){var p=pt(i,v);s+="<circle cx='"+p[0]+"' cy='"+p[1]+"' r='3.5' fill='"+se.c+"'/>"});
+    s+="</g>";
+  });
+  $("radarSvg").innerHTML=s+"</svg>";
+  $("radarLegend").innerHTML=series.map(function(se,i){return "<label><input type='checkbox' checked data-i='"+i+"'><span class='sw' style='background:"+se.c+"'></span>"+se.n+"</label>"}).join("");
+  $("radarLegend").addEventListener("change",function(ev){
+    var i=ev.target.getAttribute("data-i");
+    var g=document.querySelector(".rs[data-i='"+i+"']");
+    if(g)g.style.display=ev.target.checked?"":"none";
+  });
+})();
+
+/* ---------- DIAGRAMME DE DEPENDANCES ---------- */
+(function(){
+  var targets=[
+    {n:"Bitbucket",sub:"POC 998 · en cours",c:HC.green,y:30},
+    {n:"AD Manager",sub:"POC 999 · accès API requis",c:HC.red,y:130},
+    {n:"AWS",sub:"POC 1001 · très avancé",c:HC.green,y:230},
+    {n:"Listes de diffusion",sub:"POC 1000 · planifié",c:HC.orange,y:330}
+  ];
+  var s="<svg viewBox='0 0 940 430'><defs><marker id='ar' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='8' markerHeight='8' orient='auto'><path d='M0 0L10 5L0 10z' fill='#475569'/></marker><marker id='ar2' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='8' markerHeight='8' orient='auto'><path d='M0 0L10 5L0 10z' fill='#1f6feb'/></marker></defs>";
+  s+="<rect x='30' y='150' width='190' height='110' rx='16' fill='#0b1f3a'/><text x='125' y='198' text-anchor='middle' fill='#fff' font-size='22' font-weight='700'>ServiceNow</text><text x='125' y='224' text-anchor='middle' fill='#a9c3ee' font-size='12'>Formulaire · Validation · RITM</text>";
+  s+="<rect x='330' y='150' width='190' height='110' rx='16' fill='#1f6feb'/><text x='425' y='198' text-anchor='middle' fill='#fff' font-size='22' font-weight='700'>Jenkins</text><text x='425' y='224' text-anchor='middle' fill='#dbeafe' font-size='12'>Job d'ouverture de droit (997)</text>";
+  s+="<line x1='220' y1='205' x2='328' y2='205' stroke='#475569' stroke-width='3' marker-end='url(#ar)'/>";
+  s+="<path d='M425 262 C425 330 300 345 150 345 C100 345 125 320 125 264' fill='none' stroke='#1f6feb' stroke-width='2.5' stroke-dasharray='7 6' marker-end='url(#ar2)'/>";
+  s+="<text x='300' y='372' font-size='12' fill='#1f6feb' font-weight='600' text-anchor='middle'>Retour de statut et clôture automatique</text>";
+  targets.forEach(function(t){
+    var cy=t.y+35;
+    s+="<path d='M520 205 C600 205 590 "+cy+" 660 "+cy+"' fill='none' stroke='#475569' stroke-width='2.5' marker-end='url(#ar)'/>";
+    s+="<rect x='662' y='"+t.y+"' width='250' height='70' rx='14' fill='#fff' stroke='"+t.c+"' stroke-width='3'/><rect x='662' y='"+t.y+"' width='12' height='70' rx='6' fill='"+t.c+"'/>";
+    s+="<text x='690' y='"+(t.y+30)+"' font-size='18' font-weight='700' fill='#0b1f3a'>"+t.n+"</text><text x='690' y='"+(t.y+52)+"' font-size='12' fill='#64748b'>"+t.sub+"</text>";
+  });
+  $("depSvg").innerHTML=s+"</svg>";
+})();
+
+/* ---------- MATRICE DES RISQUES ---------- */
+var risks=[
+ {id:"R1",t:"Accès API AD Manager non obtenu à temps",p:4,i:5,a:"Escalade équipe AD, date ferme"},
+ {id:"R2",t:"Décalage du POC AD (999)",p:4,i:4,a:"Préparer le dossier API en amont"},
+ {id:"R3",t:"Impact sur le POC listes de diffusion (1000)",p:3,i:3,a:"Clarifier le lien avec les groupes AD"},
+ {id:"R4",t:"Incertitude licences ServiceNow",p:4,i:3,a:"Estimation de coût, décision d'achat"},
+ {id:"R5",t:"Référentiel des équipes non identifié",p:3,i:4,a:"Nommer un responsable et un pilote"},
+ {id:"R6",t:"Dépendances organisationnelles (TMA, congés)",p:3,i:3,a:"Relances planifiées, préparation du dossier"}
+];
+(function(){
+  var s="<div class='rm'>";
+  for(var pr=5;pr>=1;pr--){
+    s+="<div class='ax'>"+pr+"</div>";
+    for(var im=1;im<=5;im++){
+      var sc=pr*im,cls=sc>=15?"c-r":sc>=8?"c-o":"c-g";
+      var items=risks.filter(function(r){return r.p===pr&&r.i===im}).map(function(r){return "<span class='rb'>"+r.id+"</span>"}).join("");
+      s+="<div class='cell "+cls+"'>"+items+"</div>";
+    }
+  }
+  s+="<div class='ax'></div>";
+  for(var x=1;x<=5;x++)s+="<div class='ax'>"+x+"</div>";
+  s+="</div><p class='note'>Axe vertical : probabilité (1 à 5). Axe horizontal : impact (1 à 5). Zone rouge : score de 15 ou plus ; orange : de 8 à 14 ; vert : moins de 8.</p>";
+  $("riskMatrix").innerHTML=s;
+  $("riskList").innerHTML="<div class='tbl-wrap'><table><thead><tr><th>Réf.</th><th>Risque</th><th>Score</th><th>Mitigation</th></tr></thead><tbody>"+
+   risks.slice().sort(function(a,b){return b.p*b.i-a.p*a.i}).map(function(r){var sc=r.p*r.i;var b=sc>=15?"b-red":sc>=8?"b-orange":"b-green";return "<tr><td><b>"+r.id+"</b></td><td>"+r.t+"</td><td><span class='badge "+b+"'>"+sc+"</span></td><td style='font-size:13px'>"+r.a+"</td></tr>"}).join("")+"</tbody></table></div>";
+})();
+
+/* ---------- MATRICE OPPORTUNITES ---------- */
+var opps=[
+ {n:"POC AWS très avancé",e:1.5,g:4.3,d:"Gain rapide : première démonstration de bout en bout sur AWS."},
+ {n:"POC Bitbucket prêt",e:1.5,g:3.2,d:"Livraison la semaine du 02/11, aucun blocage."},
+ {n:"Jenkins en parallèle",e:3.2,g:4.0,d:"Le job peut être développé avant la fin des POC."},
+ {n:"Parallélisation des sous-tâches",e:2.2,g:3.6,d:"Plusieurs sous-tâches avancent simultanément avec des équipes différentes."},
+ {n:"SNOW malgré les blocages",e:4.2,g:4.7,d:"Formulaire et référentiel avancent en attendant licence et devis."}
+];
+(function(){
+  var box=$("oppMatrix");
+  var html="<div class='q' style='left:0;top:0'>Gains rapides</div><div class='q' style='right:0;top:0'>Projets structurants</div><div class='q' style='left:0;bottom:0'>À opportunité</div><div class='q' style='right:0;bottom:0'>À arbitrer</div><div class='ylab'>Gain →</div><div class='xlab'>Effort restant →</div>";
+  opps.forEach(function(o){html+="<div class='pt' style='left:"+(o.e/5*100)+"%;bottom:"+(o.g/5*100)+"%'>"+o.n+"</div>"});
+  box.innerHTML=html;
+  $("oppList").innerHTML="<ul class='chk b'>"+opps.map(function(o){return "<li><b>"+o.n+"</b> : "+o.d+"</li>"}).join("")+"</ul><p class='note'>Positions estimées (échelle 0 à 5) : gain pour le projet, effort restant.</p>";
+})();
+
+/* ---------- GANTT ---------- */
+(function(){
+  var start=new Date(2026,9,26),end=new Date(2027,2,31),total=end-start;
+  var months=["Oct. 26","Nov. 26","Déc. 26","Janv. 27","Févr. 27","Mars 27"];
+  function pc(d){return Math.max(0,Math.min(100,(d-start)/total*100))}
+  function D(y,m,d){return new Date(y,m-1,d)}
+  var rows=[
+   {l:"995 · Formulaire SNOW",s:D(2026,10,26),e:D(2027,1,15),c:HC.orange,t:"est. jusqu'à mi-janvier",cond:true},
+   {l:"996 · Informations à stocker",s:D(2026,10,26),e:D(2026,11,27),c:HC.orange,t:"table SNOW (est.)"},
+   {l:"997 · Job Jenkins",s:D(2026,11,2),e:D(2026,12,18),c:HC.orange,t:"dès le 02/11 (est.)"},
+   {l:"998 · POC Bitbucket",s:D(2026,10,26),e:D(2026,11,6),c:HC.green,t:"livraison S 02/11"},
+   {l:"999 · POC AD Manager",s:D(2027,1,11),e:D(2027,3,5),c:HC.red,t:"accès API requis",cond:true},
+   {l:"1000 · POC Listes de diffusion",s:D(2027,1,25),e:D(2027,3,19),c:HC.red,t:"après 998 et 999 (est.)",cond:true},
+   {l:"1001 · POC AWS",s:D(2026,10,26),e:D(2026,11,20),c:HC.green,t:"très avancé"},
+   {l:"1002 · Gestion équipe/groupe AWS",s:D(2026,10,26),e:D(2026,11,13),c:HC.green,t:"analyse"}
+  ];
+  var cols="repeat(6,1fr)";
+  var h="<div class='gantt'><div class='g-top'><div>Sous-tâche</div><div class='g-head' style='grid-template-columns:"+cols+"'>"+months.map(function(m){return "<div>"+m+"</div>"}).join("")+"</div></div>";
+  var today=D(2026,10,28);
+  rows.forEach(function(r,idx){
+    var l=pc(r.s),w=pc(r.e)-l;
+    h+="<div class='g-row'><div class='g-label'><b>"+r.l+"</b></div><div class='g-track'>"+
+    "<div class='g-bar"+(r.cond?" cond":"")+"' style='left:"+l+"%;width:"+w+"%;background:"+r.c+"'>"+r.t+"</div>"+
+    (idx===0?"<div class='today' style='left:"+pc(today)+"%'><span>28/10</span></div>":"<div class='today' style='left:"+pc(today)+"%'></div>")+"</div></div>";
+  });
+  h+="</div>";
+  $("gantt").innerHTML=h;
+})();
+
+/* ---------- ANIMATIONS ---------- */
+function animate(){
+  document.querySelectorAll(".bar i").forEach(function(b){b.style.width=b.getAttribute("data-w")+"%"});
+  document.querySelectorAll(".gauge .arc").forEach(function(a){a.style.strokeDashoffset=a.getAttribute("data-target")});
+}
+function setFinal(){animate()}
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){animate();io.disconnect()}})},{threshold:.15});
+  io.observe($("kpi"));io.observe($("progress"));
+}else{animate()}
+setTimeout(animate,2500);
+window.addEventListener("beforeprint",setFinal);
+})();
+</script>
+</body>
+</html>
