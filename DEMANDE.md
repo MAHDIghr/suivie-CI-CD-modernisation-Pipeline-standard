@@ -1,5 +1,26 @@
 
 DEMANDE : 
+Agis comme un chef de projet IT expérimenté
+e pilote actuellement la mise en place d’un bastion basé sur Apache Guacamole. Je souhaite que tu analyses les informations ci-dessous afin de m’indiquer, de manière professionnelle et opérationnelle, ce que je dois faire en tant que chef de projet.
+
+IMPORTANT :
+- N’invente aucune information absente du contexte.
+- Distingue clairement :
+1. les décisions prises ;
+2. les actions confirmées ;
+3. les propositions ;
+4. les points restant à clarifier ;
+5. les risques et dépendances.
+
+- Lorsqu’un responsable ou une échéance n’est pas explicitement défini, indique « À identifier » ou « À confirmer ».
+
+- Ne considère pas une hypothèse évoquée oralement comme une décision validée.
+  
+- Reformule les éléments techniques dans un langage professionnel adapté à un ticket Jira.
+  
+- Ne reprends pas les plaisanteries ou les échanges informels de la réunion.
+  
+- Mets en évidence les actions qui relèvent directement du chef de projet.
 
 donne moi dans un readme ce que je doit faire en tanque chef de projet d'une façon professionelle et me proposé egalement un commentaire a mettre dans le ticket jira et d'eventuelle action que je peut faire aussi. 
 
